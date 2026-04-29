@@ -14,58 +14,48 @@
             theme: {
                 extend: {
                     fontFamily: { sans: ['Prompt', 'sans-serif'], outfit: ['Outfit', 'sans-serif'] },
-                    colors: { brand: { dark: '#4A90E2', main: '#72AEE6', light: '#F0F7FF', text: '#2C3E50', subtext: '#5D6D7E' } },
+                    colors: { brand: { dark: '#4682B4', main: '#87CEEB', light: '#E1F5FE', text: '#2C3E50', subtext: '#5D6D7E' } },
                     boxShadow: {
-                        'app': '0 -10px 40px -15px rgba(114, 174, 230, 0.2), 0 10px 40px -15px rgba(114, 174, 230, 0.2)',
-                        'nav': '0 -5px 25px -5px rgba(114, 174, 230, 0.3)',
-                        'card': '0 15px 35px -5px rgba(114, 174, 230, 0.15)',
-                        'glow': '0 0 15px rgba(114, 174, 230, 0.4)',
-                        'logo': '0 0 25px rgba(255, 255, 255, 0.5)'
+                        'app': '0 -10px 40px -15px rgba(70, 130, 180, 0.2)',
+                        'nav': '0 -5px 25px -5px rgba(70, 130, 180, 0.3)',
+                        'card': '0 15px 35px -5px rgba(70, 130, 180, 0.15)',
+                        'glow': '0 0 20px rgba(135, 206, 235, 0.5)',
+                        'logo': '0 0 0 6px white, 0 10px 25px rgba(70, 130, 180, 0.25)'
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #F8FBFF; -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
-        .app-container { max-width: 430px; margin: 0 auto; min-height: 100vh; background-color: #F0F7FF; position: relative; box-shadow: 0 0 40px rgba(114, 174, 230, 0.15); }
-        .gradient-bg { background: linear-gradient(135deg, #4A90E2 0%, #72AEE6 100%); }
+        body { background-color: #F0F9FF; -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
+        .app-container { max-width: 430px; margin: 0 auto; min-height: 100vh; background-color: #F8FDFF; position: relative; box-shadow: 0 0 40px rgba(70, 130, 180, 0.15); }
+        .gradient-bg { background: linear-gradient(135deg, #87CEEB 0%, #B0E0E6 100%); }
         
-        /* Floating Animation for decor */
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-        .decor-float { animation: float 5s ease-in-out infinite; pointer-events: none; }
+        /* Floating Decorations */
+        @keyframes softFloat { 0%, 100% { transform: translateY(0) translateX(0); } 50% { transform: translateY(-15px) translateX(5px); } }
+        .decor { position: absolute; pointer-events: none; z-index: 5; animation: softFloat 6s ease-in-out infinite; opacity: 0.6; }
         
-        /* Logo Floating (Inside) */
-        @keyframes profileFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-        .profile-float { animation: profileFloat 4s ease-in-out infinite; }
-
-        /* Light Ring Rotating (Outside) */
-        @keyframes ringRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .light-ring {
-            position: relative; width: 208px; height: 208px; border-radius: 50%;
-            background: conic-gradient(from 0deg, transparent, #ffffff, transparent 40%);
-            animation: ringRotate 4s linear infinite; display: flex; align-items: center; justify-content: center;
+        /* Neon Ring Animation */
+        @keyframes rotateRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .neon-ring {
+            position: relative; width: 206px; height: 206px; border-radius: 50%; padding: 4px;
+            background: conic-gradient(from 0deg, transparent, #87CEEB, white, transparent 60%);
+            animation: rotateRing 4s linear infinite; display: flex; align-items: center; justify-content: center;
         }
 
-        /* Magic Border for Gallery */
-        @keyframes borderRotate { 100% { transform: rotate(360deg); } }
-        .magic-border { position: relative; padding: 2px; overflow: hidden; }
-        .magic-border::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, #72AEE6, transparent 30%); animation: borderRotate 4s linear infinite; }
-        .magic-border-content { position: relative; background: white; border-radius: inherit; }
-
-        .status-container { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.5); padding: 4px 4px 4px 12px; border-radius: 99px; display: inline-flex; align-items: center; gap: 10px; }
-        .status-light { width: 10px; height: 10px; background: #2ECC71; border-radius: 50%; position: relative; }
-        .status-light::after { content: ''; position: absolute; inset: -4px; background: #2ECC71; border-radius: 50%; animation: pulse-ring 1.5s infinite; }
-        @keyframes pulse-ring { 0% { transform: scale(0.5); opacity: 0.8; } 100% { transform: scale(2.5); opacity: 0; } }
-
-        .page { display: none; animation: pageIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; padding-bottom: 120px; }
+        .page { display: none; animation: pageIn 0.5s ease-out forwards; padding-bottom: 120px; }
         .page.active { display: block; }
-        @keyframes pageIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        .popup-overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); }
-        .home-btn-top { position: absolute; top: 48px; right: 24px; z-index: 50; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; transition: 0.3s; }
-        .skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
+        .popup-overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.85); z-index: 1000; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(8px); }
+        .header-glass { background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3); padding: 6px 14px; border-radius: 18px; }
+        .home-btn-top { position: absolute; top: 48px; right: 24px; z-index: 50; width: 40px; height: 40px; background: rgba(255, 255, 255, 0.3); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.4); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; }
+        
+        .skeleton { background: linear-gradient(90deg, #e1f5fe 25%, #b3e5fc 50%, #e1f5fe 75%); background-size: 200% 100%; animation: loading 1.5s infinite; }
         @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        
+        .magic-border { position: relative; padding: 2px; overflow: hidden; border-radius: 38px; }
+        .magic-border::before { content: ""; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(transparent, #87CEEB, transparent 30%); animation: rotateRing 4s linear infinite; }
     </style>
 </head>
 <body class="text-brand-text font-sans antialiased">
@@ -73,7 +63,7 @@
     <div id="gallery-popup" class="popup-overlay" onclick="closeGallery()">
         <div class="bg-white rounded-[40px] w-full max-w-sm max-h-[80vh] overflow-y-auto p-6 shadow-2xl relative" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center mb-6 sticky top-0 bg-white/90 backdrop-blur pb-2 z-10">
-                <h3 class="font-black text-xl text-brand-dark uppercase tracking-tight">Junty Gallery</h3>
+                <h3 class="font-black text-xl text-brand-dark uppercase tracking-tight">Gallery</h3>
                 <button onclick="closeGallery()" class="w-9 h-9 flex items-center justify-center bg-brand-light rounded-full text-brand-dark shadow-sm"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="grid grid-cols-2 gap-3" id="gallery-grid"></div>
@@ -86,31 +76,30 @@
 
     <div class="app-container flex flex-col">
         
-        <div id="page-home" class="page active relative overflow-hidden">
-            <div class="decor-float absolute top-10 left-5 text-4xl opacity-40">☁️</div>
-            <div class="decor-float absolute top-48 right-5 text-2xl opacity-40" style="animation-delay: 1s;">✨</div>
-            <div class="decor-float absolute bottom-60 left-8 text-3xl opacity-30" style="animation-delay: 2s;">🧶</div>
+        <div id="page-home" class="page active relative">
+            <div class="decor top-20 left-10 text-4xl">☁️</div>
+            <div class="decor top-40 right-5 text-2xl" style="animation-delay: 1s;">✨</div>
+            <div class="decor bottom-60 left-5 text-3xl" style="animation-delay: 2.5s;">☁️</div>
 
             <div class="gradient-bg pt-12 px-6 pb-32 relative rounded-b-[60px] shadow-lg text-center overflow-hidden">
-                <div class="flex justify-between items-center mb-8 relative z-10 text-left">
-                    <div class="header-glass flex items-center gap-3 shadow-md">
+                <div class="flex justify-between items-center mb-8 relative z-10">
+                    <div class="header-glass flex items-center gap-3">
                         <div class="w-1.5 h-8 bg-white rounded-full"></div>
-                        <div class="text-white font-outfit">
-                            <div class="text-lg font-black leading-tight tracking-tight uppercase">Junty We</div>
-                            <div class="text-[8px] font-bold tracking-[0.25em] text-white/80 uppercase">Handmade Studio</div>
+                        <div class="text-white font-outfit text-left">
+                            <div class="text-lg font-black leading-tight uppercase">Junty We</div>
+                            <div class="text-[8px] font-bold tracking-[0.2em] text-white/80 uppercase">Handmade Studio</div>
                         </div>
                     </div>
                 </div>
                 <div class="z-10 relative mb-4">
                     <h1 class="text-[26px] font-black text-white tracking-tight drop-shadow-md">Welcome Customer ✨</h1>
-                    <div class="mt-2 bg-white/10 backdrop-blur-sm px-5 py-1.5 rounded-full border border-white/20 inline-block shadow-sm">
-                        <span class="text-[11px] font-bold text-white uppercase tracking-widest">ยินดีต้อนรับลูกค้าทุกท่าน</span>
+                    <div class="mt-3 bg-white/20 backdrop-blur-sm px-6 py-1.5 rounded-full border border-white/30 inline-block shadow-sm">
+                        <span class="text-[12px] font-bold text-white uppercase tracking-widest">ยินดีต้อนรับลูกค้าทุกท่าน</span>
                     </div>
                 </div>
-                
                 <div class="relative flex justify-center mt-10 mb-[-115px] z-20">
-                    <div class="light-ring">
-                        <div class="profile-float w-[194px] h-[190px] rounded-full overflow-hidden bg-white p-1 shadow-logo">
+                    <div class="neon-ring shadow-glow">
+                        <div class="w-[190px] h-[190px] rounded-full overflow-hidden bg-white p-1">
                             <img src="IMG_4612.png" alt="Logo" class="w-full h-full object-cover rounded-full">
                         </div>
                     </div>
@@ -119,39 +108,36 @@
 
             <div class="bg-white rounded-t-[50px] -mt-16 relative z-10 pt-20 px-6 pb-8 shadow-app">
                 <div class="text-center mb-10">
-                    <div class="status-container shadow-md border-brand-light">
+                    <div class="inline-flex items-center gap-2 bg-brand-light/80 backdrop-blur-md px-4 py-2 rounded-full border border-brand-main/20 shadow-sm">
+                        <div class="status-light"></div>
                         <span class="text-[11px] font-black text-brand-dark tracking-wide uppercase">สถานะร้าน : เปิดรับคิวปกติ</span>
-                        <div class="bg-brand-light py-1.5 px-3 rounded-full flex items-center gap-2 border border-brand-main/10 shadow-inner">
-                            <span class="status-light"></span>
-                            <span class="text-[10px] font-black text-green-600 uppercase tracking-tighter">Online</span>
-                        </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-4 gap-4 mb-10 text-center">
-                    <div class="flex flex-col items-center gap-2.5 group cursor-pointer" onclick="switchTab('page-pricing', 1)">
-                        <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 active:scale-90 transition-all"><i class="fa-solid fa-tag"></i></div>
-                        <span class="text-[10px] font-black text-brand-text">PRICING</span>
+                    <div class="flex flex-col items-center gap-2 group cursor-pointer" onclick="switchTab('page-pricing', 1)">
+                        <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl group-active:scale-90 transition-all shadow-sm border border-brand-main/10"><i class="fa-solid fa-tag"></i></div>
+                        <span class="text-[10px] font-black text-brand-text">PRICE</span>
                     </div>
-                    <div class="flex flex-col items-center gap-2.5 group cursor-pointer" onclick="switchTab('page-order', -1)">
-                        <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 active:scale-90 transition-all"><i class="fa-solid fa-cart-shopping"></i></div>
+                    <div class="flex flex-col items-center gap-2 group cursor-pointer" onclick="switchTab('page-order', -1)">
+                        <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl group-active:scale-90 transition-all shadow-sm border border-brand-main/10"><i class="fa-solid fa-cart-shopping"></i></div>
                         <span class="text-[10px] font-black text-brand-text">ORDER</span>
                     </div>
-                    <div class="flex flex-col items-center gap-2.5 group cursor-pointer" onclick="switchTab('page-queue', 2)">
-                        <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 active:scale-90 transition-all"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="flex flex-col items-center gap-2 group cursor-pointer" onclick="switchTab('page-queue', 2)">
+                        <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl group-active:scale-90 transition-all shadow-sm border border-brand-main/10"><i class="fa-solid fa-list-check"></i></div>
                         <span class="text-[10px] font-black text-brand-text">QUEUE</span>
                     </div>
-                    <div class="flex flex-col items-center gap-2.5 group cursor-pointer" onclick="switchTab('page-review', 3)">
-                        <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 active:scale-90 transition-all"><i class="fa-solid fa-heart"></i></div>
+                    <div class="flex flex-col items-center gap-2 group cursor-pointer" onclick="switchTab('page-review', 3)">
+                        <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl group-active:scale-90 transition-all shadow-sm border border-brand-main/10"><i class="fa-solid fa-heart"></i></div>
                         <span class="text-[10px] font-black text-brand-text">REVIEW</span>
                     </div>
                 </div>
 
-                <div class="magic-border rounded-[38px] cursor-pointer shadow-card active:scale-[0.98] transition-all" onclick="openGallery()">
-                    <div class="magic-border-content rounded-[36px] p-5">
+                <div class="magic-border cursor-pointer shadow-card active:scale-[0.98] transition-all" onclick="openGallery()">
+                    <div class="bg-white rounded-[36px] p-5 relative z-10">
                         <div class="flex justify-between items-center mb-5">
-                            <p class="text-sm font-black text-brand-text flex items-center gap-2"><span class="w-1.5 h-5 bg-brand-main rounded-full"></span> ตัวอย่างงานของร้าน</p>
-                            <span class="text-[9px] font-black text-white bg-brand-main px-3 py-1.5 rounded-xl flex items-center gap-1 shadow-sm uppercase">See All <i class="fa-solid fa-chevron-right text-[7px]"></i></span>
+                            <p class="text-sm font-black text-brand-text flex items-center gap-2"><span class="w-1.5 h-5 bg-brand-main rounded-full"></span> ตัวอย่างงานล่าสุด</p>
+                            <span class="text-[9px] font-black text-white bg-brand-main px-3 py-1.5 rounded-xl uppercase">See All <i class="fa-solid fa-chevron-right text-[7px] ml-1"></i></span>
                         </div>
                         <div class="grid grid-cols-3 gap-2.5" id="preview-grid">
                             <div class="skeleton aspect-[3/4] rounded-2xl"></div>
@@ -163,54 +149,52 @@
             </div>
         </div>
 
-        <div id="page-pricing" class="page relative overflow-hidden">
-            <div class="decor-float absolute top-20 right-10 text-3xl opacity-30">☁️</div>
-            <div class="decor-float absolute bottom-1/4 left-5 text-4xl opacity-20" style="animation-delay: 2s;">🪡</div>
+        <div id="page-pricing" class="page relative">
+            <div class="decor top-24 left-5 text-3xl">🪡</div>
+            <div class="decor bottom-1/3 right-8 text-2xl" style="animation-delay: 1.5s;">✨</div>
             <div class="home-btn-top" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-house"></i></div>
             <div class="gradient-bg pt-24 pb-24 text-center rounded-b-[60px] text-white">
                 <h1 class="text-4xl font-black drop-shadow-xl tracking-widest uppercase italic">PRICING</h1>
             </div>
             <div class="px-6 -mt-12 relative z-10">
                 <div class="bg-white rounded-[40px] shadow-card border-2 border-brand-light p-8 text-center">
-                    <div class="inline-flex items-center gap-2 bg-brand-main text-white text-[13px] font-black px-7 py-2.5 rounded-full mb-8 shadow-glow uppercase">START 890.-</div>
-                    <h3 class="text-[24px] font-black text-brand-text leading-tight">ราคาเริ่มต้น <br> 890 - 1,500 บาท</h3>
+                    <div class="inline-flex items-center gap-2 bg-brand-main text-white text-[13px] font-black px-7 py-2.5 rounded-full mb-8 shadow-glow">START 890.-</div>
+                    <h3 class="text-[24px] font-black text-brand-text">ราคาเริ่มต้น <br> 890 - 1,500 บาท</h3>
                     <div class="my-8 h-[2px] bg-gradient-to-r from-transparent via-brand-main/20 to-transparent"></div>
-                    <p class="text-[15px] text-brand-subtext font-bold leading-relaxed px-2">รายละเอียดการสั่งผลิตกระเป๋าจะแตกต่างกันออกไป ขึ้นอยู่กับดีเทลและแพทเทิร์นต่าง ๆ</p>
-                    <p class="text-brand-dark font-black mt-4 text-lg underline decoration-brand-main/30 underline-offset-8">แวะมาสอบถามทางร้านก่อนได้นะคะ</p>
-                    <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="w-full bg-brand-text text-white font-black py-5 rounded-[22px] block shadow-xl mt-12 active:scale-95 transition-all flex items-center justify-center gap-3"><i class="fa-brands fa-facebook-messenger text-xl text-brand-main"></i> สอบถามผ่าน Facebook</a>
+                    <p class="text-[15px] text-brand-subtext font-bold leading-relaxed px-4 italic">"รายละเอียดขึ้นอยู่กับดีเทลและแพทเทิร์น แวะมาสอบถามก่อนได้นะคะ"</p>
+                    <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="w-full bg-brand-dark text-white font-black py-5 rounded-[22px] block shadow-xl mt-12 active:scale-95 transition-all flex items-center justify-center gap-3"><i class="fa-brands fa-facebook-messenger text-xl"></i> สอบถามผ่าน Facebook</a>
                 </div>
             </div>
         </div>
 
-        <div id="page-order" class="page relative overflow-hidden">
-            <div class="decor-float absolute top-10 left-10 text-3xl opacity-30">☁️</div>
-            <div class="decor-float absolute bottom-40 right-5 text-4xl opacity-20" style="animation-delay: 1.5s;">🛒</div>
+        <div id="page-order" class="page relative">
+            <div class="decor top-10 right-10 text-3xl">🛒</div>
+            <div class="decor bottom-40 left-10 text-3xl" style="animation-delay: 2s;">💙</div>
             <div class="home-btn-top" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-house"></i></div>
             <div class="gradient-bg pt-24 pb-24 text-center rounded-b-[60px] text-white">
                 <h1 class="text-3xl font-black uppercase tracking-tighter">How to Order</h1>
-                <div class="mt-2 inline-block bg-white/20 px-4 py-1.5 rounded-full text-[11px] font-black tracking-[0.2em]">ขั้นตอนการสั่งผลิต</div>
+                <div class="mt-2 inline-block bg-white/20 px-4 py-1 rounded-full text-[11px] font-black tracking-widest uppercase">ขั้นตอนการผลิต</div>
             </div>
             <div class="px-6 -mt-12 relative z-10 space-y-6">
-                <div class="bg-white/95 backdrop-blur-md rounded-[40px] shadow-app border border-white p-7 space-y-5">
-                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10 shadow-sm"><div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black flex-shrink-0 shadow-md">1</div><p class="text-[15px] text-brand-text font-bold">จองคิวสั่งผลิตกระเป๋า OC/ACG <br><span class="text-[11px] text-brand-main font-black">(Waiting List)</span></p></div>
-                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10 shadow-sm"><div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black flex-shrink-0 shadow-md">2</div><p class="text-[15px] text-brand-text font-bold">ทางเราจะติดต่อกลับไปยัง <br><span class="text-[11px] text-brand-main font-black">DM เฟสบุ๊คคุณลูกค้า</span></p></div>
-                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10 shadow-sm"><div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black flex-shrink-0 shadow-md">3</div><p class="text-[15px] text-brand-text font-bold">ส่งบรีฟงานให้แก่ทางร้าน <br><span class="text-[11px] text-brand-main font-black">เช่น ภาพตัวละคร/สีที่ชอบ</span></p></div>
-                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10 shadow-sm"><div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black flex-shrink-0 shadow-md">4</div><p class="text-[15px] text-brand-text font-bold">สรุปราคาาสุทธิ <br><span class="text-[11px] text-brand-main font-black">และชำระเงินเต็มจำนวน</span></p></div>
+                <div class="bg-white rounded-[40px] shadow-app border border-white p-7 space-y-5">
+                    <div class="flex items-center gap-5 p-4 bg-brand-light/50 rounded-2xl border border-brand-main/10 shadow-sm"><div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center font-black shadow-md shrink-0">1</div><p class="text-[14px] text-brand-text font-bold leading-tight">จองคิวสั่งผลิตกระเป๋า OC/ACG <br><span class="text-[10px] text-brand-dark opacity-60 italic">(Waiting List)</span></p></div>
+                    <div class="flex items-center gap-5 p-4 bg-brand-light/50 rounded-2xl border border-brand-main/10 shadow-sm"><div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center font-black shadow-md shrink-0">2</div><p class="text-[14px] text-brand-text font-bold leading-tight">ทางเราจะติดต่อกลับไปยัง <br><span class="text-[10px] text-brand-dark opacity-60 italic">DM เฟสบุ๊คคุณลูกค้า</span></p></div>
+                    <div class="flex items-center gap-5 p-4 bg-brand-light/50 rounded-2xl border border-brand-main/10 shadow-sm"><div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center font-black shadow-md shrink-0">3</div><p class="text-[14px] text-brand-text font-bold leading-tight">ส่งบรีฟงานให้แก่ทางร้าน <br><span class="text-[10px] text-brand-dark opacity-60 italic">เช่น ส่งภาพตัวละคร</span></p></div>
+                    <div class="flex items-center gap-5 p-4 bg-brand-light/50 rounded-2xl border border-brand-main/10 shadow-sm"><div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center font-black shadow-md shrink-0">4</div><p class="text-[14px] text-brand-text font-bold leading-tight">สรุปราคาและ <br><span class="text-[10px] text-brand-dark opacity-60 italic">ชำระเงินเต็มจำนวน</span></p></div>
                 </div>
                 <div class="bg-brand-dark rounded-[30px] p-7 text-white text-center shadow-lg border-2 border-white/20 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 opacity-10 rotate-12"><i class="fa-solid fa-clock text-7xl"></i></div>
-                    <p class="text-[12px] font-bold opacity-80 mb-2 uppercase tracking-widest">Production Period</p>
                     <p class="text-[18px] font-black tracking-tight drop-shadow-sm">** ระยะเวลาผลิตประมาณ 2-3 เดือน **</p>
                 </div>
             </div>
         </div>
 
-        <div id="page-queue" class="page relative overflow-hidden text-center">
-            <div class="decor-float absolute top-32 left-8 text-4xl opacity-30">☁️</div>
-            <div class="decor-float absolute top-1/2 right-10 text-3xl opacity-20" style="animation-delay: 2.5s;">📝</div>
+        <div id="page-queue" class="page relative text-center">
+            <div class="decor top-32 left-8 text-4xl">📝</div>
+            <div class="decor bottom-1/4 right-10 text-3xl" style="animation-delay: 2s;">☁️</div>
             <div class="home-btn-top" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-house"></i></div>
             <div class="gradient-bg pt-24 pb-24 text-center rounded-b-[60px] text-white">
-                <h1 class="text-3xl font-black uppercase tracking-tight italic">QUEUE LIST</h1>
+                <h1 class="text-3xl font-black uppercase tracking-tight">QUEUE LIST</h1>
             </div>
             <div class="px-6 -mt-12 relative z-10">
                 <div class="bg-white rounded-[40px] shadow-card border-2 border-brand-light p-10">
@@ -222,26 +206,25 @@
                             <span class="text-brand-dark font-black text-lg block mt-1 uppercase">24/7 Realtime update</span>
                         </p>
                     </div>
-                    <a href="https://docs.google.com/spreadsheets/d/1MzZbh0tqMbEVlz3a02oYk4z-WXgzS-VIVi6bsNZW8QU/edit" target="_blank" class="mt-12 block bg-brand-dark text-white p-7 rounded-[32px] shadow-glow active:scale-95 transition-all font-black text-xl border-b-4 border-black/20 uppercase tracking-tight">เปิด Waiting List</a>
+                    <a href="https://docs.google.com/spreadsheets/d/1C1DZwEdATiSjv1ufRAxLlK_AQo7BjiUtO_GTyETlJXs/edit" target="_blank" class="mt-12 block bg-brand-dark text-white p-7 rounded-[32px] shadow-glow active:scale-95 transition-all font-black text-xl">เปิด Waiting List</a>
                 </div>
             </div>
         </div>
 
-        <div id="page-review" class="page relative overflow-hidden text-center">
-            <div class="decor-float absolute top-10 right-15 text-4xl opacity-30">☁️</div>
-            <div class="decor-float absolute bottom-1/3 left-8 text-3xl opacity-20" style="animation-delay: 3s;">🎀</div>
+        <div id="page-review" class="page relative text-center">
+            <div class="decor top-10 right-15 text-4xl">🎀</div>
+            <div class="decor bottom-1/3 left-8 text-3xl" style="animation-delay: 1.5s;">🧵</div>
             <div class="home-btn-top" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-house"></i></div>
             <div class="gradient-bg pt-24 pb-24 text-center rounded-b-[60px] text-white">
                 <h1 class="text-3xl font-black uppercase tracking-tight italic">REVIEWS</h1>
             </div>
             <div class="px-6 -mt-12 relative z-10">
                 <div class="bg-white rounded-[40px] shadow-card border-2 border-brand-light p-10">
-                    <div class="w-24 h-24 bg-brand-main rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl border-4 border-white relative">
+                    <div class="w-24 h-24 bg-brand-main rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl border-4 border-white relative animate-pulse">
                         <i class="fa-solid fa-heart text-4xl text-white"></i>
-                        <div class="absolute inset-0 flex items-center justify-center animate-ping opacity-20"><i class="fa-solid fa-heart text-5xl text-white"></i></div>
                     </div>
-                    <h2 class="text-[24px] font-black text-brand-text uppercase tracking-tight">อ่านรีวิวจากลูกค้า</h2>
-                    <p class="text-[15px] text-brand-subtext font-bold leading-relaxed mt-4 mb-10">สามารถชมผลงานจริงและความประทับใจ <br>ผ่านแฮชแท็กด้านล่างนี้ได้เลยค่ะ</p>
+                    <h2 class="text-[24px] font-black text-brand-text uppercase">อ่านรีวิวจากลูกค้า</h2>
+                    <p class="text-[15px] text-brand-subtext font-bold leading-relaxed mt-4 mb-10">สามารถชมผลงานจริงและความประทับใจ <br>ผ่านช่องทางแฮชแท็กด้านล่างนี้ได้เลยค่ะ</p>
                     <div class="grid grid-cols-1 gap-5">
                         <a href="https://www.facebook.com/hashtag/juntywereview" target="_blank" class="bg-gradient-to-r from-brand-dark to-brand-main text-white py-5 rounded-[25px] font-black text-lg shadow-lg active:scale-95 transition-all flex items-center justify-center gap-3">
                             <i class="fa-solid fa-hashtag text-xl opacity-70"></i> juntyreview
@@ -257,21 +240,21 @@
         <div class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-2xl border-t border-brand-main/10 px-8 py-7 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-[45px]">
             <div class="flex justify-between items-center text-center">
                 <div onclick="switchTab('page-home', 0)" id="nav-item-0" class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-main">
-                    <i class="fa-solid fa-house-chimney text-2xl"></i><span class="text-[10px] font-black">HOME</span>
+                    <i class="fa-solid fa-house-chimney text-2xl"></i><span class="text-[10px] font-black uppercase">Home</span>
                 </div>
                 <div onclick="switchTab('page-pricing', 1)" id="nav-item-1" class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-subtext">
-                    <i class="fa-solid fa-tag text-2xl"></i><span class="text-[10px] font-bold">PRICE</span>
+                    <i class="fa-solid fa-tag text-2xl"></i><span class="text-[10px] font-bold uppercase">Price</span>
                 </div>
                 <div onclick="switchTab('page-order', -1)" class="relative w-1/5 flex justify-center cursor-pointer">
-                    <div class="absolute -top-16 w-16 h-16 bg-brand-dark rounded-[24px] flex items-center justify-center text-white text-2xl shadow-glow border-4 border-white rotate-45 transform active:scale-90 transition-all shadow-lg">
+                    <div class="absolute -top-16 w-16 h-16 bg-brand-dark rounded-[24px] flex items-center justify-center text-white text-2xl shadow-glow border-4 border-white rotate-45 transform active:scale-90 transition-all">
                         <i class="fa-solid fa-cart-shopping -rotate-45"></i>
                     </div>
                 </div>
                 <div onclick="switchTab('page-queue', 2)" id="nav-item-2" class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-subtext">
-                    <i class="fa-solid fa-calendar-check text-2xl"></i><span class="text-[10px] font-bold">QUEUE</span>
+                    <i class="fa-solid fa-calendar-check text-2xl"></i><span class="text-[10px] font-bold uppercase">Queue</span>
                 </div>
                 <div onclick="switchTab('page-review', 3)" id="nav-item-3" class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-subtext">
-                    <i class="fa-solid fa-heart text-2xl"></i><span class="text-[10px] font-bold">REVIEW</span>
+                    <i class="fa-solid fa-heart text-2xl"></i><span class="text-[10px] font-bold uppercase">Review</span>
                 </div>
             </div>
         </div>
@@ -301,14 +284,14 @@
             grid.innerHTML = ''; preview.innerHTML = '';
             
             if (urls.length === 0) {
-                preview.innerHTML = '<p class="col-span-3 text-[10px] text-center opacity-50 font-bold py-6 italic text-brand-main/50">รออัปเดตผลงานชิ้นใหม่นะคะ...</p>';
+                preview.innerHTML = '<p class="col-span-3 text-[10px] text-center opacity-50 py-6 italic text-brand-dark">รออัปเดตผลงาน...</p>';
                 return;
             }
 
             urls.forEach((url, index) => {
                 const img = document.createElement('img');
                 img.src = url; 
-                img.className = "rounded-2xl w-full aspect-square object-cover shadow-sm hover:scale-[1.05] active:scale-95 transition-all cursor-pointer border border-brand-light bg-white";
+                img.className = "rounded-2xl w-full aspect-square object-cover shadow-sm hover:scale-[1.05] transition-all cursor-pointer border-2 border-brand-light bg-white";
                 img.onclick = () => openModal(url);
                 grid.appendChild(img);
                 
@@ -326,17 +309,16 @@
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            const navIds = [0, 1, 2, 3];
-            navIds.forEach(i => {
+            const navItems = [0, 1, 2, 3];
+            navItems.forEach(i => {
                 const item = document.getElementById(`nav-item-${i}`);
                 if (!item) return;
                 if (i === navIndex) {
                     item.classList.replace('text-brand-subtext', 'text-brand-main');
-                    item.querySelector('span').className = "text-[10px] font-black";
+                    item.querySelector('span').className = "text-[10px] font-black uppercase";
                 } else {
-                    item.classList.add('text-brand-subtext');
-                    item.classList.remove('text-brand-main');
-                    item.querySelector('span').className = "text-[10px] font-bold";
+                    item.classList.replace('text-brand-main', 'text-brand-subtext');
+                    item.querySelector('span').className = "text-[10px] font-bold uppercase";
                 }
             });
         }
