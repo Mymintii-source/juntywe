@@ -21,7 +21,8 @@
                         'app': '0 -10px 40px -15px rgba(114, 174, 230, 0.2), 0 10px 40px -15px rgba(114, 174, 230, 0.2)',
                         'nav': '0 -5px 25px -5px rgba(114, 174, 230, 0.3)',
                         'card': '0 15px 35px -5px rgba(114, 174, 230, 0.15)',
-                        'glow': '0 0 15px rgba(114, 174, 230, 0.4)'
+                        'glow': '0 0 15px rgba(114, 174, 230, 0.4)',
+                        'logo': '0 0 0 8px rgba(255, 255, 255, 0.4), 0 10px 30px rgba(74, 144, 226, 0.3)'
                     }
                 }
             }
@@ -36,54 +37,47 @@
         }
         .gradient-bg { background: linear-gradient(135deg, #4A90E2 0%, #72AEE6 100%); }
         
-        /* Floating Animation */
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-12px) rotate(3deg); }
         }
         .floating-img { animation: float 5s ease-in-out infinite; pointer-events: none; position: absolute; z-index: 5; opacity: 0.9; }
         
-        /* Glow Border Animation */
         @keyframes borderGlow {
             0%, 100% { border-color: rgba(114, 174, 230, 0.3); box-shadow: 0 0 5px rgba(114, 174, 230, 0.1); }
             50% { border-color: rgba(114, 174, 230, 0.8); box-shadow: 0 0 15px rgba(114, 174, 230, 0.3); }
         }
         .animated-glow-border { border: 2px solid; animation: borderGlow 3s infinite; }
 
-        /* Status Bar Style */
         .status-container {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            padding: 4px 4px 4px 12px;
-            border-radius: 99px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5); padding: 4px 4px 4px 12px;
+            border-radius: 99px; display: inline-flex; align-items: center; gap: 10px;
         }
-        .status-light {
-            width: 12px; height: 12px; background: #2ECC71; border-radius: 50%;
-            position: relative;
-        }
+        .status-light { width: 12px; height: 12px; background: #2ECC71; border-radius: 50%; position: relative; }
         .status-light::after {
             content: ''; position: absolute; inset: -4px;
-            background: #2ECC71; border-radius: 50%;
-            animation: pulse-ring 1.5s infinite;
+            background: #2ECC71; border-radius: 50%; animation: pulse-ring 1.5s infinite;
         }
         @keyframes pulse-ring { 0% { transform: scale(0.5); opacity: 0.8; } 100% { transform: scale(2.5); opacity: 0; } }
 
-        /* Modal & UI */
         .page { display: none; animation: pageIn 0.5s ease-out forwards; padding-bottom: 120px; }
         .page.active { display: block; }
         @keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
         #image-modal { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); z-index: 100; align-items: center; justify-content: center; }
         
         .header-glass {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 6px 14px; border-radius: 18px;
+            background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2); padding: 6px 14px; border-radius: 18px;
+        }
+
+        .home-btn-top {
+            position: absolute; top: 48px; right: 24px; z-index: 50;
+            width: 40px; height: 40px; background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            color: white; shadow-lg;
         }
     </style>
 </head>
@@ -91,19 +85,14 @@
 
     <div id="image-modal" onclick="closeModal()">
         <img id="modal-img" src="" class="max-w-[90%] max-h-[80vh] rounded-2xl shadow-2xl border-4 border-white/10">
-        <div class="absolute top-6 right-6 text-white text-2xl"><i class="fa-solid fa-xmark"></i></div>
     </div>
 
     <div class="app-container flex flex-col">
         
         <div id="page-home" class="page active">
-            <img src="3619_20241019174457.png" class="floating-img w-20 top-24 -right-2" style="animation-delay: 0s;">
-            <img src="3619_20241019174514.png" class="floating-img w-24 top-[450px] -left-6" style="animation-delay: 1.5s;">
-
-            <div class="gradient-bg pt-12 px-6 pb-32 relative rounded-b-[60px] shadow-lg overflow-hidden">
-                <div class="absolute top-[-50px] right-[-50px] w-48 h-48 bg-white/10 rounded-full blur-3xl"></div>
-                
-                <div class="flex justify-between items-center mb-8 relative z-10">
+            <img src="3619_20241019174457.png" class="floating-img w-20 top-24 -right-2">
+            <div class="gradient-bg pt-12 px-6 pb-32 relative rounded-b-[60px] shadow-lg overflow-hidden text-center">
+                <div class="flex justify-between items-center mb-8 relative z-10 text-left">
                     <div class="header-glass flex items-center gap-3">
                         <div class="w-1.5 h-8 bg-white rounded-full"></div>
                         <div class="text-white font-outfit">
@@ -111,18 +100,23 @@
                             <div class="text-[8px] font-bold tracking-[0.25em] text-white/80 uppercase">Handmade Studio</div>
                         </div>
                     </div>
-                    <div class="w-11 h-11 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center text-white border border-white/30 shadow-lg"><i class="fa-regular fa-bell text-lg"></i></div>
                 </div>
                 
-                <div class="text-center mb-4 z-10 relative">
-                    <h1 class="text-2xl font-extrabold text-white tracking-tight drop-shadow-md">Welcome Customer ✨</h1>
-                    <div class="mt-2 inline-flex items-center gap-2 bg-black/10 backdrop-blur-sm px-4 py-1.5 rounded-full border border-white/10">
-                        <span class="text-[11px] font-bold text-white uppercase tracking-wider">ยินดีต้อนรับลูกค้าทุกท่าน</span>
+                <div class="z-10 relative mb-4">
+                    <h1 class="text-[26px] font-black text-white tracking-tight drop-shadow-md">
+                        <i class="fa-solid fa-star text-[18px] mr-1 opacity-80"></i>
+                        Welcome Customer
+                        <i class="fa-solid fa-sparkles text-[18px] ml-1 opacity-80"></i>
+                    </h1>
+                    <div class="mt-3 inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full border border-white/20">
+                        <span class="text-[12px] font-bold text-white uppercase tracking-widest">ยินดีต้อนรับลูกค้าทุกท่าน</span>
                     </div>
                 </div>
                 
-                <div class="hero-image-placeholder mt-8 mb-[-110px]">
-                    <img src="IMG_4612.png" alt="Logo" class="w-full h-full object-cover">
+                <div class="hero-image-placeholder mt-8 mb-[-110px] !shadow-logo bg-white p-2">
+                    <div class="w-full h-full rounded-full overflow-hidden bg-white flex items-center justify-center">
+                        <img src="IMG_4612.png" alt="Logo" class="w-full h-full object-cover">
+                    </div>
                 </div>
             </div>
 
@@ -140,31 +134,29 @@
                 <div class="grid grid-cols-4 gap-4 mb-10">
                     <div class="flex flex-col items-center gap-2.5 group" onclick="switchTab('page-pricing', 1)">
                         <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 group-active:scale-90 transition-all"><i class="fa-solid fa-tag"></i></div>
-                        <span class="text-[10px] font-bold text-brand-text">PRICING</span>
+                        <span class="text-[10px] font-bold text-brand-text uppercase tracking-tighter">PRICING</span>
                     </div>
                     <div class="flex flex-col items-center gap-2.5 group" onclick="switchTab('page-order', -1)">
                         <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 group-active:scale-90 transition-all"><i class="fa-solid fa-cart-shopping"></i></div>
-                        <span class="text-[10px] font-bold text-brand-text">ORDER</span>
+                        <span class="text-[10px] font-bold text-brand-text uppercase tracking-tighter">ORDER</span>
                     </div>
                     <div class="flex flex-col items-center gap-2.5 group" onclick="switchTab('page-queue', 2)">
                         <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 group-active:scale-90 transition-all"><i class="fa-solid fa-list-check"></i></div>
-                        <span class="text-[10px] font-bold text-brand-text">QUEUE</span>
+                        <span class="text-[10px] font-bold text-brand-text uppercase tracking-tighter">QUEUE</span>
                     </div>
                     <div class="flex flex-col items-center gap-2.5 group" onclick="switchTab('page-review', 3)">
                         <div class="w-16 h-16 rounded-3xl bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 group-active:scale-90 transition-all"><i class="fa-solid fa-heart"></i></div>
-                        <span class="text-[10px] font-bold text-brand-text">REVIEW</span>
+                        <span class="text-[10px] font-bold text-brand-text uppercase tracking-tighter">REVIEW</span>
                     </div>
                 </div>
 
                 <div class="space-y-4">
-                    <div class="animated-glow-border rounded-[35px] bg-brand-light/40 p-5 relative overflow-hidden">
-                        <div class="flex justify-between items-center mb-5 relative z-10">
-                            <p class="text-sm font-black text-brand-text flex items-center gap-2">
-                                <span class="w-1.5 h-5 bg-brand-main rounded-full"></span> ตัวอย่างงานของร้าน
-                            </p>
-                            <span class="text-[9px] font-black text-white bg-brand-main px-3 py-1.5 rounded-xl shadow-md">GALLERY</span>
+                    <div class="animated-glow-border rounded-[35px] bg-brand-light/40 p-5">
+                        <div class="flex justify-between items-center mb-5">
+                            <p class="text-sm font-black text-brand-text flex items-center gap-2"><span class="w-1.5 h-5 bg-brand-main rounded-full"></span> ตัวอย่างงานของร้าน</p>
+                            <span class="text-[9px] font-black text-white bg-brand-main px-3 py-1.5 rounded-xl">GALLERY</span>
                         </div>
-                        <div class="grid grid-cols-3 gap-2.5 relative z-10">
+                        <div class="grid grid-cols-3 gap-2.5">
                             <img src="juntywe-review1.png" class="rounded-2xl w-full aspect-[3/4] object-cover bg-white shadow-sm cursor-pointer hover:scale-[1.03] transition-transform" onclick="openModal(this.src)">
                             <img src="juntywe-review2.png" class="rounded-2xl w-full aspect-[3/4] object-cover bg-white shadow-sm cursor-pointer hover:scale-[1.03] transition-transform" onclick="openModal(this.src)">
                             <img src="juntywe-review3.png" class="rounded-2xl w-full aspect-[3/4] object-cover bg-white shadow-sm cursor-pointer hover:scale-[1.03] transition-transform" onclick="openModal(this.src)">
@@ -175,147 +167,79 @@
         </div>
 
         <div id="page-pricing" class="page">
-            <img src="3619_20241019174539.png" class="floating-img w-20 top-40 right-2">
-            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[60px]">
-                <div class="flex items-center mb-6">
-                    <div class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-xl flex items-center justify-center text-white border border-white/30" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-chevron-left"></i></div>
-                    <div class="flex-1 text-center text-white font-outfit text-xl font-black uppercase tracking-[0.2em] mr-10">Pricing</div>
-                </div>
-                <div class="text-center z-10 relative"><h1 class="text-4xl font-black text-white drop-shadow-xl">PRICING 🏷️</h1></div>
+            <div class="home-btn-top" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-house"></i></div>
+            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[60px] flex flex-col items-center justify-center text-center">
+                <div class="z-10 relative"><h1 class="text-4xl font-black text-white drop-shadow-xl uppercase tracking-widest">PRICING</h1></div>
             </div>
             <div class="px-6 -mt-12 relative z-10">
                 <div class="bg-white rounded-[40px] shadow-card border border-brand-light p-8 text-center animated-glow-border">
-                    <div class="inline-flex items-center gap-2 bg-brand-main text-white text-[12px] font-black px-6 py-2.5 rounded-full mb-8 shadow-glow">
-                        <i class="fa-solid fa-star text-[10px]"></i> START 890.-
-                    </div>
+                    <div class="inline-flex items-center gap-2 bg-brand-main text-white text-[12px] font-black px-6 py-2.5 rounded-full mb-8 shadow-glow">START 890.-</div>
                     <h3 class="text-2xl font-black text-brand-text">ราคาเริ่มต้น 890 - 1,500 บาท</h3>
                     <div class="my-8 h-[2px] bg-gradient-to-r from-transparent via-brand-main/20 to-transparent"></div>
-                    <p class="text-sm text-brand-subtext font-medium leading-relaxed px-2">
-                        รายละเอียดการสั่งผลิตกระเป๋าจะแตกต่างกันออกไป <br>
-                        ขึ้นอยู่กับรายละเอียด & ดีเทลแพทเทิร์นต่าง ๆ <br>
-                        <span class="text-brand-dark font-black mt-4 block text-lg underline decoration-brand-main/30 decoration-4 underline-offset-4">แวะมาสอบถามกับ Junty We ได้นะคะ</span>
-                    </p>
-                    <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="w-full bg-brand-text text-white font-bold py-4.5 rounded-2xl block shadow-xl mt-10 active:scale-95 transition-all flex items-center justify-center gap-3">
-                        <i class="fa-brands fa-facebook-messenger text-xl text-brand-main"></i> สอบถามผ่าน Facebook
-                    </a>
+                    <p class="text-sm text-brand-subtext font-bold leading-relaxed px-2">รายละเอียดการสั่งผลิตกระเป๋าจะแตกต่างกันออกไปขึ้นอยู่กับรายละเอียด & ดีเทลแพทเทิร์นต่าง ๆ <span class="text-brand-dark font-black mt-4 block text-lg">แวะมาสอบถามกับ Junty We ได้นะคะ</span></p>
+                    <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="w-full bg-brand-text text-white font-bold py-4.5 rounded-2xl block shadow-xl mt-10 active:scale-95 transition-all flex items-center justify-center gap-3"><i class="fa-brands fa-facebook-messenger text-xl text-brand-main"></i> สอบถามผ่าน Facebook</a>
                 </div>
             </div>
         </div>
 
         <div id="page-order" class="page">
-            <img src="3619_20241019174558.png" class="floating-img w-20 top-20 left-4">
-            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[60px]">
-                <div class="text-center text-white">
-                    <h1 class="text-3xl font-black uppercase tracking-tighter">How to Order 🛒</h1>
-                    <p class="text-[11px] text-white/90 font-bold tracking-[0.3em] mt-1 bg-white/10 py-1 px-4 rounded-full inline-block">ขั้นตอนการสั่งผลิต</p>
+            <div class="home-btn-top" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-house"></i></div>
+            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[60px] flex flex-col items-center justify-center text-center">
+                <div class="text-white text-center">
+                    <h1 class="text-3xl font-black uppercase tracking-tighter">How to Order</h1>
+                    <div class="mt-2 inline-block bg-white/10 px-4 py-1 rounded-full text-[11px] font-bold tracking-widest">ขั้นตอนการสั่งผลิต</div>
                 </div>
             </div>
             <div class="px-6 -mt-12 relative z-10">
                 <div class="bg-white/90 backdrop-blur-md rounded-[40px] shadow-app border border-white p-7 space-y-5">
-                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10 hover:bg-white transition-colors">
-                        <div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black shadow-lg flex-shrink-0">1</div>
-                        <p class="text-[14px] text-brand-text font-bold leading-snug">จองคิวสั่งผลิตกระเป๋า OC/ACG <br><span class="text-[10px] text-brand-main font-black">(Waiting List)</span></p>
-                    </div>
-                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10 hover:bg-white">
-                        <div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black shadow-lg flex-shrink-0">2</div>
-                        <p class="text-[14px] text-brand-text font-bold leading-snug">ทางเราจะติดต่อกลับไปยัง <br><span class="text-[10px] text-brand-main font-black">DM เฟสบุ๊คคุณลูกค้า</span></p>
-                    </div>
-                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10 hover:bg-white">
-                        <div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black shadow-lg flex-shrink-0">3</div>
-                        <p class="text-[14px] text-brand-text font-bold leading-snug">ส่งบรีฟให้แก่ทางร้าน <br><span class="text-[10px] text-brand-main font-black">เช่น ส่งภาพตัวละคร</span></p>
-                    </div>
-                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10 hover:bg-white">
-                        <div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black shadow-lg flex-shrink-0">4</div>
-                        <p class="text-[14px] text-brand-text font-bold leading-snug">สรุปราคา <br><span class="text-[10px] text-brand-main font-black">และชำระเงินเต็มจำนวน</span></p>
-                    </div>
+                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10"><div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black flex-shrink-0">1</div><p class="text-[14px] text-brand-text font-bold">จองคิวสั่งผลิตกระเป๋า OC/ACG <span class="text-[10px] text-brand-main font-black">(Waiting List)</span></p></div>
+                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10"><div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black flex-shrink-0">2</div><p class="text-[14px] text-brand-text font-bold">ทางเราจะติดต่อกลับไปยัง <span class="text-[10px] text-brand-main font-black">DM เฟสบุ๊คคุณลูกค้า</span></p></div>
+                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10"><div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black flex-shrink-0">3</div><p class="text-[14px] text-brand-text font-bold">ส่งบรีฟให้แก่ทางร้าน <span class="text-[10px] text-brand-main font-black">เช่น ส่งภาพตัวละคร</span></p></div>
+                    <div class="flex items-center gap-5 p-4.5 bg-brand-light/50 rounded-2xl border border-brand-main/10"><div class="w-11 h-11 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black flex-shrink-0">4</div><p class="text-[14px] text-brand-text font-bold">สรุปราคา <span class="text-[10px] text-brand-main font-black">และชำระเงินเต็มจำนวน</span></p></div>
                 </div>
             </div>
         </div>
 
         <div id="page-queue" class="page">
-            <img src="3619_20241019174607.png" class="floating-img w-24 top-1/2 right-0">
-            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[60px]">
-                <div class="text-center text-white"><h1 class="text-3xl font-black uppercase tracking-tight">QUEUE LIST 📋</h1></div>
+            <div class="home-btn-top" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-house"></i></div>
+            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[60px] flex flex-col items-center justify-center text-center">
+                <div class="text-white text-center"><h1 class="text-3xl font-black uppercase tracking-tight">QUEUE LIST</h1></div>
             </div>
             <div class="px-6 -mt-12 relative z-10">
                 <div class="bg-white rounded-[40px] shadow-card border border-brand-light p-9 text-center animated-glow-border">
-                    <div class="relative z-10">
-                        <div class="w-24 h-24 bg-brand-light rounded-[35px] flex items-center justify-center mx-auto mb-8 rotate-6 shadow-sm border border-brand-main/20">
-                            <i class="fa-solid fa-clipboard-check text-5xl text-brand-main"></i>
-                        </div>
-                        <h2 class="text-2xl font-black text-brand-text">Check Your Status</h2>
-                        <div class="bg-brand-light/50 py-3 px-4 rounded-2xl mt-4">
-                            <p class="text-sm text-brand-subtext font-bold leading-relaxed">
-                                อัพเดทข้อมูลทุกครั้งสามารถติดตามได้ที่นี่ <br>
-                                <span class="text-brand-main">เช็คคิวและสถานะงานได้ตลอด 24 ชม.</span>
-                            </p>
-                        </div>
-                        
-                        <a href="https://docs.google.com/spreadsheets/d/1C1DZwEdATiSjv1ufRAxLlK_AQo7BjiUtO_GTyETlJXs/edit" target="_blank" class="mt-10 block bg-brand-dark text-white p-7 rounded-[30px] shadow-glow active:scale-95 transition-all group overflow-hidden relative">
-                            <div class="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform"></div>
-                            <i class="fa-solid fa-file-spreadsheet text-3xl mb-3 block"></i>
-                            <span class="block font-black text-xl tracking-tight">เปิด Waiting List</span>
-                            <span class="inline-block mt-3 text-[10px] font-black bg-white text-brand-dark px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">Update Realtime</span>
-                        </a>
-                    </div>
+                    <div class="w-24 h-24 bg-brand-light rounded-[35px] flex items-center justify-center mx-auto mb-8 rotate-6 border border-brand-main/20"><i class="fa-solid fa-clipboard-check text-5xl text-brand-main"></i></div>
+                    <h2 class="text-2xl font-black text-brand-text">Check Your Status</h2>
+                    <div class="bg-brand-light/50 py-3 px-4 rounded-2xl mt-4"><p class="text-sm text-brand-subtext font-bold leading-relaxed">อัพเดทข้อมูลทุกครั้งสามารถติดตามได้ที่นี่ <br><span class="text-brand-main">เช็คคิวและสถานะงานได้ตลอด 24 ชม.</span></p></div>
+                    <a href="https://docs.google.com/spreadsheets/d/1C1DZwEdATiSjv1ufRAxLlK_AQo7BjiUtO_GTyETlJXs/edit" target="_blank" class="mt-10 block bg-brand-dark text-white p-7 rounded-[30px] shadow-glow transition-all active:scale-95"><i class="fa-solid fa-file-spreadsheet text-3xl mb-3 block"></i><span class="block font-black text-xl">เปิด Waiting List</span></a>
                 </div>
             </div>
         </div>
 
         <div id="page-review" class="page">
-            <img src="3619_20241019174457.png" class="floating-img w-20 top-40 -left-4 opacity-50">
-            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[60px]">
-                <div class="text-center text-white"><h1 class="text-3xl font-black uppercase tracking-tight">Review ✨</h1></div>
+            <div class="home-btn-top" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-house"></i></div>
+            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[60px] flex flex-col items-center justify-center text-center">
+                <div class="text-white text-center"><h1 class="text-3xl font-black uppercase tracking-tight">REVIEWS</h1></div>
             </div>
             <div class="px-6 -mt-12 relative z-10">
-                <div class="bg-white rounded-[40px] shadow-card border border-brand-light p-10 text-center relative overflow-hidden animated-glow-border">
-                    <div class="absolute -right-6 -top-6 w-32 h-32 bg-brand-light rounded-full opacity-30"></div>
-                    <div class="relative z-10">
-                        <div class="w-24 h-24 bg-brand-main rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl border-4 border-white relative">
-                            <i class="fa-solid fa-heart text-4xl text-white"></i>
-                            <div class="absolute inset-0 flex items-center justify-center animate-ping opacity-30"><i class="fa-solid fa-heart text-5xl text-white"></i></div>
-                            <div class="absolute inset-0 flex items-center justify-center"><i class="fa-solid fa-heart text-sm text-brand-main translate-y-[-2px]"></i></div>
-                        </div>
-                        <h2 class="text-2xl font-black text-brand-text">อ่านรีวิวจากลูกค้า</h2>
-                        <div class="mt-4 px-2">
-                            <p class="text-sm text-brand-subtext font-bold leading-relaxed">
-                                คุณสามารถอ่านรีวิว ความประทับใจ <br>และดูผลงานจริงจากลูกค้าท่านอื่นได้ที่นี่ค่ะ
-                            </p>
-                        </div>
-                        
-                        <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="mt-10 flex items-center justify-center gap-4 bg-[#1877F2] text-white font-black py-5 rounded-[25px] shadow-2xl active:scale-95 transition-all">
-                            <i class="fa-brands fa-facebook text-2xl"></i>
-                            <span>Facebook Page</span>
-                        </a>
-                        <p class="text-[10px] text-brand-subtext mt-10 font-black uppercase tracking-[0.3em] opacity-40">Junty We Handmade Shop</p>
+                <div class="bg-white rounded-[40px] shadow-card border border-brand-light p-10 text-center relative animated-glow-border">
+                    <div class="w-24 h-24 bg-brand-main rounded-full flex items-center justify-center mx-auto mb-8 shadow-xl border-4 border-white relative">
+                        <i class="fa-solid fa-heart text-4xl text-white"></i>
+                        <div class="absolute inset-0 flex items-center justify-center animate-ping opacity-30"><i class="fa-solid fa-heart text-5xl text-white"></i></div>
                     </div>
+                    <h2 class="text-2xl font-black text-brand-text">อ่านรีวิวจากลูกค้า</h2>
+                    <p class="text-sm text-brand-subtext font-bold leading-relaxed mt-4">คุณสามารถอ่านรีวิว ความประทับใจ <br>และดูผลงานจริงจากลูกค้าท่านอื่นได้ที่นี่ค่ะ</p>
+                    <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="mt-10 flex items-center justify-center gap-4 bg-[#1877F2] text-white font-black py-5 rounded-[25px] shadow-2xl active:scale-95 transition-all"><i class="fa-brands fa-facebook text-2xl"></i><span>Facebook Page</span></a>
                 </div>
             </div>
         </div>
 
         <div class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-2xl border-t border-brand-main/10 px-8 py-6 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-[45px]">
             <div class="flex justify-between items-center">
-                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-main" onclick="switchTab('page-home', 0)" id="nav-item-0">
-                    <i class="fa-solid fa-house-chimney text-2xl"></i>
-                    <span class="text-[10px] font-black">HOME</span>
-                </div>
-                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-subtext" onclick="switchTab('page-pricing', 1)" id="nav-item-1">
-                    <i class="fa-solid fa-tag text-2xl"></i>
-                    <span class="text-[10px] font-bold">PRICE</span>
-                </div>
-                <div class="relative w-1/5 flex justify-center" onclick="switchTab('page-order', -1)">
-                    <div class="absolute -top-16 w-16 h-16 bg-brand-dark rounded-[22px] flex items-center justify-center text-white text-2xl shadow-glow border-4 border-white rotate-45 transform active:scale-90 transition-all">
-                        <i class="fa-solid fa-cart-shopping -rotate-45"></i>
-                    </div>
-                </div>
-                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-subtext" onclick="switchTab('page-queue', 2)" id="nav-item-2">
-                    <i class="fa-solid fa-calendar-check text-2xl"></i>
-                    <span class="text-[10px] font-bold">QUEUE</span>
-                </div>
-                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-subtext" onclick="switchTab('page-review', 3)" id="nav-item-3">
-                    <i class="fa-solid fa-heart text-2xl"></i>
-                    <span class="text-[10px] font-bold">REVIEW</span>
-                </div>
+                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-main" onclick="switchTab('page-home', 0)" id="nav-item-0"><i class="fa-solid fa-house-chimney text-2xl"></i><span class="text-[10px] font-black">HOME</span></div>
+                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-subtext" onclick="switchTab('page-pricing', 1)" id="nav-item-1"><i class="fa-solid fa-tag text-2xl"></i><span class="text-[10px] font-bold">PRICE</span></div>
+                <div class="relative w-1/5 flex justify-center" onclick="switchTab('page-order', -1)"><div class="absolute -top-16 w-16 h-16 bg-brand-dark rounded-[22px] flex items-center justify-center text-white text-2xl shadow-glow border-4 border-white rotate-45 transform active:scale-90 transition-all"><i class="fa-solid fa-cart-shopping -rotate-45"></i></div></div>
+                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-subtext" onclick="switchTab('page-queue', 2)" id="nav-item-2"><i class="fa-solid fa-calendar-check text-2xl"></i><span class="text-[10px] font-bold">QUEUE</span></div>
+                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-subtext" onclick="switchTab('page-review', 3)" id="nav-item-3"><i class="fa-solid fa-heart text-2xl"></i><span class="text-[10px] font-bold">REVIEW</span></div>
             </div>
         </div>
     </div>
@@ -338,11 +262,8 @@
                 }
             }
         }
-
-        const modal = document.getElementById('image-modal');
-        const modalImg = document.getElementById('modal-img');
-        function openModal(src) { modal.style.display = 'flex'; modalImg.src = src; }
-        function closeModal() { modal.style.display = 'none'; }
+        function openModal(src) { document.getElementById('image-modal').style.display = 'flex'; document.getElementById('modal-img').src = src; }
+        function closeModal() { document.getElementById('image-modal').style.display = 'none'; }
     </script>
 </body>
 </html>
