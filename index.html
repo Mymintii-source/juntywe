@@ -19,52 +19,66 @@
                     },
                     colors: {
                         brand: {
-                            dark: '#5B9BD5',     
-                            main: '#7FB3D5',     
-                            light: '#EBF5FB',    
+                            dark: '#4A90E2',     
+                            main: '#72AEE6',     
+                            light: '#F0F7FF',    
                             text: '#2C3E50',     
                             subtext: '#5D6D7E'   
                         }
                     },
                     boxShadow: {
-                        'app': '0 -10px 40px -15px rgba(127, 179, 213, 0.15), 0 10px 40px -15px rgba(127, 179, 213, 0.15)',
-                        'nav': '0 -5px 20px -5px rgba(127, 179, 213, 0.2)'
+                        'app': '0 -10px 40px -15px rgba(114, 174, 230, 0.2), 0 10px 40px -15px rgba(114, 174, 230, 0.2)',
+                        'nav': '0 -5px 25px -5px rgba(114, 174, 230, 0.3)',
+                        'card': '0 10px 25px -5px rgba(114, 174, 230, 0.1), 0 8px 10px -6px rgba(114, 174, 230, 0.1)'
                     }
                 }
             }
         }
     </script>
     <style>
-        body { background-color: #FAFAFA; -webkit-tap-highlight-color: transparent; }
+        body { background-color: #F8FBFF; -webkit-tap-highlight-color: transparent; }
         .app-container {
             max-width: 430px; margin: 0 auto; min-height: 100vh;
-            background-color: #EBF5FB; position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05); overflow-x: hidden;
+            background-color: #F0F7FF; position: relative;
+            box-shadow: 0 0 30px rgba(114, 174, 230, 0.1); overflow-x: hidden;
         }
-        .gradient-bg { background: linear-gradient(180deg, #5DADE2 0%, #AED6F1 100%); }
+        .gradient-bg { background: linear-gradient(135deg, #72AEE6 0%, #A3D2F5 100%); }
         .stars-bg {
             background-image: 
-                radial-gradient(circle at 15% 30%, white 1px, transparent 1.5px),
-                radial-gradient(circle at 85% 20%, white 1px, transparent 1.5px),
-                radial-gradient(circle at 30% 60%, white 2px, transparent 2.5px),
-                radial-gradient(circle at 75% 70%, white 1.5px, transparent 2px);
-            background-size: 100% 100%;
+                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.4) 1px, transparent 1px),
+                radial-gradient(circle at 90% 10%, rgba(255,255,255,0.4) 1.5px, transparent 1.5px),
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.2) 2px, transparent 2px);
+            background-size: 100px 100px;
         }
         .hero-image-placeholder {
             width: 190px; height: 190px; background-color: white;
-            border-radius: 50%; border: 4px solid white;
-            box-shadow: 0 10px 20px rgba(127, 179, 213, 0.4);
+            border-radius: 50%; border: 6px solid rgba(255,255,255,0.8);
+            box-shadow: 0 15px 30px rgba(114, 174, 230, 0.3);
             margin: 0 auto; position: relative; z-index: 20;
             display: flex; align-items: center; justify-content: center; overflow: hidden;
         }
-        .page { display: none; animation: fadeIn 0.3s ease-out forwards; padding-bottom: 90px; }
+        .page { display: none; animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards; padding-bottom: 100px; }
         .page.active { display: block; }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: scale(0.98) translateY(10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
         }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        .status-blink { animation: blink 1.2s infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .status-blink { animation: blink 1.5s infinite; }
+        
+        /* Glow Pulse Animation for Queue Page */
+        @keyframes glowPulse {
+            0% { border-color: rgba(114, 174, 230, 0.3); box-shadow: 0 0 5px rgba(114, 174, 230, 0.1); }
+            50% { border-color: rgba(114, 174, 230, 0.8); box-shadow: 0 0 20px rgba(114, 174, 230, 0.4); }
+            100% { border-color: rgba(114, 174, 230, 0.3); box-shadow: 0 0 5px rgba(114, 174, 230, 0.1); }
+        }
+        .queue-glow { animation: glowPulse 3s infinite ease-in-out; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body class="text-brand-text font-sans antialiased">
@@ -72,58 +86,66 @@
     <div class="app-container flex flex-col">
         
         <div id="page-home" class="page active">
-            <div class="gradient-bg pt-10 px-6 pb-24 relative rounded-b-[40px]">
-                <div class="stars-bg absolute inset-0 opacity-40"></div>
+            <div class="gradient-bg pt-12 px-6 pb-28 relative rounded-b-[50px] shadow-lg">
+                <div class="stars-bg absolute inset-0 opacity-50"></div>
                 <div class="flex justify-between items-center mb-6 relative z-10">
-                    <div class="text-brand-text font-outfit text-2xl font-bold tracking-wide flex flex-col brand-title">
+                    <div class="text-white font-outfit text-2xl font-extrabold tracking-tight flex flex-col">
                         JUNTY WE
-                        <span class="text-xs font-medium tracking-widest text-brand-subtext mt-1 uppercase">SEWING & HANDMADE</span>
+                        <span class="text-[10px] font-medium tracking-[0.2em] text-white/80 mt-1 uppercase">SEWING & HANDMADE</span>
                     </div>
-                    <div class="relative"><i class="fa-regular fa-bell text-brand-text text-xl"></i></div>
+                    <div class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 shadow-sm">
+                        <i class="fa-regular fa-bell text-lg"></i>
+                    </div>
                 </div>
                 
-                <div class="text-center mb-2 z-10 relative">
-                    <h1 class="text-lg font-semibold text-brand-text">Welcome Customer ✨</h1>
-                    <p class="text-sm font-medium text-brand-subtext mt-1">ยินดีต้อนรับลูกค้าทุกท่าน</p>
+                <div class="text-center mb-4 z-10 relative">
+                    <h1 class="text-xl font-bold text-white drop-shadow-md">Welcome Customer ✨</h1>
+                    <p class="text-xs font-medium text-white/90 mt-1 bg-white/10 py-1 px-3 rounded-full inline-block">ยินดีต้อนรับลูกค้าทุกท่าน</p>
                 </div>
                 
-                <div class="hero-image-placeholder mt-4 mb-[-80px]">
-                    <img src="IMG_4612.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/190?text=IMG_4612.png'">
+                <div class="hero-image-placeholder mt-6 mb-[-100px]">
+                    <img src="IMG_4612.png" alt="Logo" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/190/72AEE6/FFFFFF?text=JUNTY+WE'">
                 </div>
             </div>
 
-            <div class="bg-white rounded-t-[35px] -mt-16 relative z-10 pt-10 px-5 shadow-app pb-6">
-                <div class="text-center mb-4 mt-12">
-                    <span class="text-brand-main font-semibold text-sm tracking-wide bg-brand-light px-4 py-1.5 rounded-full inline-block border border-brand-main/20">
-                        <span class="status-blink mr-1">🔵</span> สถานะร้าน : เปิดรับคิวปกติ ⛅️
+            <div class="bg-white rounded-t-[40px] -mt-16 relative z-10 pt-12 px-6 shadow-app pb-8">
+                <div class="text-center mb-6 mt-14">
+                    <span class="text-brand-dark font-bold text-xs tracking-wide bg-brand-light px-5 py-2 rounded-full inline-flex items-center gap-2 border border-brand-main/20 shadow-sm">
+                        <span class="w-2 h-2 bg-brand-dark rounded-full status-blink"></span> สถานะร้าน : เปิดรับคิวปกติ 
                     </span>
                 </div>
                 
-                <div class="grid grid-cols-4 gap-3 mb-8">
-                    <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="switchTab('page-pricing', 1)">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-light flex items-center justify-center text-brand-main text-xl shadow-sm border border-brand-main/10 transition-colors"><i class="fa-solid fa-tag"></i></div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight uppercase">PRICING</span>
+                <div class="grid grid-cols-4 gap-4 mb-10">
+                    <div class="flex flex-col items-center gap-2.5 cursor-pointer group" onclick="switchTab('page-pricing', 1)">
+                        <div class="w-16 h-16 rounded-[22px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 group-active:scale-95 transition-all"><i class="fa-solid fa-tag"></i></div>
+                        <span class="text-[10px] text-brand-text font-bold uppercase tracking-wider">PRICING</span>
                     </div>
-                    <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="switchTab('page-order', -1)">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-light flex items-center justify-center text-brand-main text-xl shadow-sm border border-brand-main/10 transition-colors"><i class="fa-solid fa-cart-shopping"></i></div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight uppercase">ORDER</span>
+                    <div class="flex flex-col items-center gap-2.5 cursor-pointer group" onclick="switchTab('page-order', -1)">
+                        <div class="w-16 h-16 rounded-[22px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 group-active:scale-95 transition-all"><i class="fa-solid fa-cart-shopping"></i></div>
+                        <span class="text-[10px] text-brand-text font-bold uppercase tracking-wider">ORDER</span>
                     </div>
-                    <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="switchTab('page-queue', 2)">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-light flex items-center justify-center text-brand-main text-xl shadow-sm border border-brand-main/10 transition-colors"><i class="fa-solid fa-list-check"></i></div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight uppercase">QUEUE</span>
+                    <div class="flex flex-col items-center gap-2.5 cursor-pointer group" onclick="switchTab('page-queue', 2)">
+                        <div class="w-16 h-16 rounded-[22px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 group-active:scale-95 transition-all"><i class="fa-solid fa-list-check"></i></div>
+                        <span class="text-[10px] text-brand-text font-bold uppercase tracking-wider">QUEUE</span>
                     </div>
-                    <div class="flex flex-col items-center gap-2 cursor-pointer group" onclick="switchTab('page-review', 3)">
-                        <div class="w-14 h-14 rounded-2xl bg-brand-light flex items-center justify-center text-brand-main text-xl shadow-sm border border-brand-main/10 transition-colors"><i class="fa-solid fa-heart"></i></div>
-                        <span class="text-[10px] text-center text-brand-text font-medium leading-tight uppercase">REVIEW</span>
+                    <div class="flex flex-col items-center gap-2.5 cursor-pointer group" onclick="switchTab('page-review', 3)">
+                        <div class="w-16 h-16 rounded-[22px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-sm border border-brand-main/10 group-active:scale-95 transition-all"><i class="fa-solid fa-heart"></i></div>
+                        <span class="text-[10px] text-brand-text font-bold uppercase tracking-wider">REVIEW</span>
                     </div>
                 </div>
 
-                <div class="space-y-3 mb-8">
-                    <div class="border border-brand-light rounded-2xl bg-white shadow-sm overflow-hidden p-4">
-                        <p class="text-sm font-bold text-brand-text mb-3"><i class="fa-solid fa-star text-brand-main mr-2"></i> ตัวอย่างงานของเรา</p>
-                        <div class="grid grid-cols-2 gap-2">
-                            <img src="https://via.placeholder.com/200" class="rounded-lg w-full aspect-square object-cover">
-                            <img src="https://via.placeholder.com/200" class="rounded-lg w-full aspect-square object-cover">
+                <div class="space-y-4 mb-4">
+                    <div class="border border-brand-main/10 rounded-3xl bg-brand-light/30 shadow-sm overflow-hidden p-5">
+                        <div class="flex justify-between items-center mb-4">
+                            <p class="text-sm font-extrabold text-brand-text flex items-center gap-2">
+                                <span class="w-1 h-4 bg-brand-main rounded-full"></span> ตัวอย่างงานของร้าน
+                            </p>
+                            <span class="text-[10px] font-bold text-brand-main bg-white px-2 py-1 rounded-md shadow-xs">JUNTY GALLERY</span>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2">
+                            <img src="juntywe-review1.png" class="rounded-xl w-full aspect-[3/4] object-cover bg-white shadow-sm" onerror="this.src='https://via.placeholder.com/150/72AEE6/FFFFFF?text=R1'">
+                            <img src="juntywe-review2.png" class="rounded-xl w-full aspect-[3/4] object-cover bg-white shadow-sm" onerror="this.src='https://via.placeholder.com/150/72AEE6/FFFFFF?text=R2'">
+                            <img src="juntywe-review3.png" class="rounded-xl w-full aspect-[3/4] object-cover bg-white shadow-sm" onerror="this.src='https://via.placeholder.com/150/72AEE6/FFFFFF?text=R3'">
                         </div>
                     </div>
                 </div>
@@ -131,111 +153,135 @@
         </div>
 
         <div id="page-pricing" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
+            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[50px]">
                 <div class="flex justify-between items-center mb-6">
-                    <div class="w-8 h-8 bg-brand-light/80 rounded-full flex items-center justify-center text-brand-main cursor-pointer" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-chevron-left text-sm"></i></div>
-                    <div class="text-brand-text font-outfit text-xl font-bold uppercase tracking-wide">JUNTY WE</div>
-                    <div class="w-8"></div>
+                    <div class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 cursor-pointer" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-chevron-left text-sm"></i></div>
+                    <div class="text-white font-outfit text-xl font-bold uppercase tracking-widest">Pricing Table</div>
+                    <div class="w-10"></div>
                 </div>
                 <div class="text-center mb-2 z-10 relative">
-                    <h1 class="text-2xl font-bold mt-1 text-brand-text">PRICING 🏷️</h1>
+                    <h1 class="text-3xl font-black text-white drop-shadow-md">PRICING 🏷️</h1>
                 </div>
             </div>
-            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-6 text-center">
-                    <span class="bg-brand-light text-brand-main text-[10px] font-bold px-3 py-1 rounded-full">START 890.-</span>
-                    <h3 class="text-lg font-bold text-brand-text mt-3 mb-1">ราคาเริ่มต้น 890 - 1,500 บาท</h3>
-                    <p class="text-xs text-brand-subtext mb-6">ขึ้นอยู่กับรายละเอียด & ดีเทลแพทเทิร์นต่าง ๆ แวะมาสอบถามราคาก่อนได้ค่ะ</p>
-                    <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="w-full bg-brand-main text-white font-semibold py-3.5 rounded-xl block shadow-lg">สอบถามผ่าน Facebook</a>
+            <div class="px-6 -mt-12 relative z-10 pb-8">
+                <div class="bg-white rounded-[32px] shadow-card border border-brand-light p-8 text-center relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-brand-main"></div>
+                    <div class="inline-block bg-brand-light text-brand-dark text-[12px] font-black px-4 py-1.5 rounded-full mb-6 border border-brand-main/20">START 890.-</div>
+                    <h3 class="text-xl font-bold text-brand-text mt-2">ราคาเริ่มต้น 890 - 1,500 บาท</h3>
+                    <div class="my-6 h-px bg-gradient-to-r from-transparent via-brand-main/20 to-transparent"></div>
+                    <p class="text-sm text-brand-subtext leading-relaxed px-2">
+                        รายละเอียดการสั่งผลิตกระเป๋าจะแตกต่างกันออกไป <br>
+                        ขึ้นอยู่กับรายละเอียด & ดีเทลแพทเทิร์นต่าง ๆ <br>
+                        <span class="text-brand-dark font-bold mt-2 block">แวะมาสอบถามราคากับ Junty We ก่อนได้นะคะ</span>
+                    </p>
+                    <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="w-full bg-brand-dark hover:bg-brand-text text-white font-bold py-4 rounded-2xl block shadow-lg shadow-brand-main/30 mt-8 transition-all active:scale-95">
+                        <i class="fa-brands fa-facebook-messenger mr-2"></i> สอบถามผ่าน Facebook
+                    </a>
                 </div>
             </div>
         </div>
 
         <div id="page-order" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="text-center mb-2 z-10 relative text-brand-text">
-                    <h1 class="text-2xl font-bold">ORDER PROCESS 🛒</h1>
+            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[50px]">
+                <div class="text-center mb-2 z-10 relative text-white">
+                    <h1 class="text-2xl font-black uppercase tracking-tight">How to Order 🛒</h1>
+                    <p class="text-[10px] text-white/80 font-medium tracking-[0.3em] mt-1">ขั้นตอนการสั่งผลิต</p>
                 </div>
             </div>
-            <div class="px-5 -mt-10 relative z-10 pb-8">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-6 space-y-4">
-                    <div class="flex gap-4 p-3 bg-brand-light/30 rounded-xl">
-                        <div class="w-6 h-6 rounded-full bg-brand-main text-white text-center text-xs flex items-center justify-center font-bold">1</div>
-                        <p class="text-sm text-brand-text">จองคิวสั่งผลิตกระเป๋า OC/ACG (Waiting List)</p>
+            <div class="px-6 -mt-12 relative z-10 pb-8">
+                <div class="bg-white rounded-[32px] shadow-app border border-brand-light p-7 space-y-5">
+                    <div class="flex gap-4 p-4 bg-brand-light/50 rounded-2xl border border-white">
+                        <div class="w-8 h-8 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-sm flex-shrink-0">1</div>
+                        <p class="text-sm text-brand-text font-medium leading-6">จองคิวสั่งผลิตกระเป๋า OC/ACG (Waiting List)</p>
                     </div>
-                    <div class="flex gap-4 p-3 bg-brand-light/30 rounded-xl">
-                        <div class="w-6 h-6 rounded-full bg-brand-main text-white text-center text-xs flex items-center justify-center font-bold">2</div>
-                        <p class="text-sm text-brand-text">ทางเราจะติดต่อกลับไปยัง DM เฟสบุ๊คคุณลูกค้า</p>
+                    <div class="flex gap-4 p-4 bg-brand-light/50 rounded-2xl border border-white">
+                        <div class="w-8 h-8 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-sm flex-shrink-0">2</div>
+                        <p class="text-sm text-brand-text font-medium leading-6">ทางเราจะติดต่อกลับไปยัง DM เฟสบุ๊คคุณลูกค้า</p>
                     </div>
-                    <div class="flex gap-4 p-3 bg-brand-light/30 rounded-xl">
-                        <div class="w-6 h-6 rounded-full bg-brand-main text-white text-center text-xs flex items-center justify-center font-bold">3</div>
-                        <p class="text-sm text-brand-text">ส่งบรีฟให้แก่ทางร้าน | เช่น ส่งภาพตัวละคร</p>
+                    <div class="flex gap-4 p-4 bg-brand-light/50 rounded-2xl border border-white">
+                        <div class="w-8 h-8 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-sm flex-shrink-0">3</div>
+                        <p class="text-sm text-brand-text font-medium leading-6">ส่งบรีฟให้แก่ทางร้าน | เช่น ส่งภาพตัวละคร</p>
                     </div>
-                    <div class="flex gap-4 p-3 bg-brand-light/30 rounded-xl">
-                        <div class="w-6 h-6 rounded-full bg-brand-main text-white text-center text-xs flex items-center justify-center font-bold">4</div>
-                        <p class="text-sm text-brand-text">สรุปราคา และชำระเงินเต็มจำนวน</p>
+                    <div class="flex gap-4 p-4 bg-brand-light/50 rounded-2xl border border-white">
+                        <div class="w-8 h-8 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-sm flex-shrink-0">4</div>
+                        <p class="text-sm text-brand-text font-medium leading-6">สรุปราคา และชำระเงินเต็มจำนวน</p>
                     </div>
                 </div>
             </div>
         </div>
 
         <div id="page-queue" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="text-center mb-2 z-10 relative text-brand-text">
-                    <h1 class="text-2xl font-bold">QUEUE LIST 📋</h1>
+            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[50px]">
+                <div class="text-center mb-2 z-10 relative text-white">
+                    <h1 class="text-2xl font-black uppercase tracking-tight">QUEUE LIST 📋</h1>
                 </div>
             </div>
-            <div class="px-5 -mt-10 relative z-10 pb-8">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-6 text-center">
-                    <p class="text-sm text-brand-subtext mb-6">เช็ครายชื่อคิว (Waiting List) ได้ที่นี่</p>
-                    <a href="https://docs.google.com/spreadsheets/d/1C1DZwEdATiSjv1ufRAxLlK_AQo7BjiUtO_GTyETlJXs/edit?ouid=112020433733025582761&usp=sheets_home&ths=true" target="_blank" class="block w-full border-2 border-dashed border-brand-main rounded-2xl p-8 hover:bg-brand-light transition-colors">
-                        <i class="fa-solid fa-table-list text-4xl text-brand-main mb-2"></i>
-                        <span class="block font-bold text-brand-text">คลิกเปิด Waiting List</span>
+            <div class="px-6 -mt-12 relative z-10 pb-8">
+                <div class="bg-white rounded-[32px] shadow-app border border-brand-light p-8 text-center">
+                    <div class="mb-6">
+                        <h2 class="text-lg font-bold text-brand-text">Check Your Status</h2>
+                        <p class="text-xs text-brand-subtext mt-1">คุณสามารถเช็คคิวและสถานะงานของตัวเองได้ที่นี่</p>
+                    </div>
+                    <a href="https://docs.google.com/spreadsheets/d/1C1DZwEdATiSjv1ufRAxLlK_AQo7BjiUtO_GTyETlJXs/edit?ouid=112020433733025582761&usp=sheets_home&ths=true" target="_blank" class="block w-full border-2 border-dashed rounded-[28px] p-10 hover:bg-brand-light transition-all duration-500 queue-glow group">
+                        <div class="w-16 h-16 bg-brand-light rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-sm">
+                            <i class="fa-solid fa-table-list text-3xl text-brand-main"></i>
+                        </div>
+                        <span class="block font-bold text-brand-text text-base">คลิกเพื่อเปิด Waiting List</span>
+                        <span class="inline-block mt-3 text-[10px] font-bold text-brand-main bg-brand-light px-3 py-1 rounded-full uppercase tracking-widest">Update Realtime</span>
                     </a>
                 </div>
             </div>
         </div>
 
         <div id="page-review" class="page">
-            <div class="gradient-bg pt-10 px-6 pb-20 relative rounded-b-[40px]">
-                <div class="text-center mb-2 z-10 relative text-brand-text">
-                    <h1 class="text-2xl font-bold uppercase">Review & Contact ❤️</h1>
+            <div class="gradient-bg pt-12 px-6 pb-24 relative rounded-b-[50px]">
+                <div class="text-center mb-2 z-10 relative text-white">
+                    <h1 class="text-2xl font-black uppercase tracking-tight">Review ❤️</h1>
                 </div>
             </div>
-            <div class="px-5 -mt-10 relative z-10 pb-8 space-y-4 text-center">
-                <div class="bg-white rounded-[24px] shadow-app border border-brand-light p-8">
-                    <div class="flex justify-center gap-8 mb-6 text-brand-main">
-                        <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="text-4xl"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" class="text-4xl"><i class="fa-brands fa-instagram"></i></a>
+            <div class="px-6 -mt-12 relative z-10 pb-8">
+                <div class="bg-white rounded-[32px] shadow-card border border-brand-light p-10 text-center">
+                    <div class="w-20 h-20 bg-brand-light rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border-4 border-white">
+                        <i class="fa-solid fa-comment-heart text-4xl text-brand-main"></i>
                     </div>
-                    <p class="text-sm font-medium text-brand-text">ติดตามรีวิวและผลงานใหม่ๆ ได้ทางเฟสบุ๊คครับ</p>
+                    <h2 class="text-xl font-bold text-brand-text">อ่านรีวิวจากลูกค้า</h2>
+                    <p class="text-sm text-brand-subtext mt-2 leading-relaxed">
+                        คุณสามารถอ่านรีวิว ความประทับใจ <br>และดูผลงานจริงจากลูกค้าท่านอื่นได้ที่นี่ค่ะ
+                    </p>
+                    
+                    <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="mt-8 flex items-center justify-center gap-3 bg-[#1877F2] hover:bg-[#166fe5] text-white font-bold py-4 rounded-2xl shadow-lg transition-all active:scale-95 group">
+                        <i class="fa-brands fa-facebook text-xl group-hover:rotate-12 transition-transform"></i>
+                        <span>ไปที่ Facebook Page</span>
+                    </a>
+                    
+                    <p class="text-[10px] text-brand-subtext mt-6 font-medium uppercase tracking-[0.2em] opacity-50">Junty We Handmade Shop</p>
                 </div>
             </div>
         </div>
 
-        <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-brand-light px-6 py-3 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-3xl">
-            <div class="flex justify-between items-end pb-2">
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-main" onclick="switchTab('page-home', 0)" id="nav-item-0">
-                    <i class="fa-solid fa-house text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-semibold">หน้าแรก</span>
+        <div class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl border-t border-brand-main/10 px-6 py-4 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-[35px]">
+            <div class="flex justify-between items-end pb-1">
+                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/4 text-brand-main" onclick="switchTab('page-home', 0)" id="nav-item-0">
+                    <i class="fa-solid fa-house-chimney text-xl"></i>
+                    <span class="text-[9px] font-bold">HOME</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext" onclick="switchTab('page-pricing', 1)" id="nav-item-1">
-                    <i class="fa-solid fa-tag text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">ราคา</span>
+                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/4 text-brand-subtext" onclick="switchTab('page-pricing', 1)" id="nav-item-1">
+                    <i class="fa-solid fa-tag text-xl"></i>
+                    <span class="text-[9px] font-medium">PRICING</span>
                 </div>
                 <div class="relative w-1/4 flex justify-center" onclick="switchTab('page-order', -1)">
-                    <div class="absolute -top-10 w-14 h-14 bg-gradient-to-tr from-brand-main to-blue-300 rounded-full flex items-center justify-center text-white text-2xl shadow-lg border-4 border-white transform hover:scale-105 transition-transform">
-                        <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="absolute -top-12 w-16 h-16 bg-gradient-to-tr from-brand-dark to-brand-main rounded-2xl flex items-center justify-center text-white text-2xl shadow-lg border-4 border-white transform hover:scale-105 active:scale-90 transition-all rotate-45">
+                        <i class="fa-solid fa-cart-shopping -rotate-45"></i>
                     </div>
-                    <span class="text-[9px] font-bold text-brand-main mt-5 uppercase">ORDER</span>
+                    <span class="text-[9px] font-black text-brand-main mt-6 uppercase tracking-wider">ORDER</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext" onclick="switchTab('page-queue', 2)" id="nav-item-2">
-                    <i class="fa-solid fa-list-check text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">เช็คคิว</span>
+                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/4 text-brand-subtext" onclick="switchTab('page-queue', 2)" id="nav-item-2">
+                    <i class="fa-solid fa-calendar-check text-xl"></i>
+                    <span class="text-[9px] font-medium">QUEUE</span>
                 </div>
-                <div class="flex flex-col items-center gap-1 cursor-pointer w-1/4 text-brand-subtext" onclick="switchTab('page-review', 3)" id="nav-item-3">
-                    <i class="fa-solid fa-heart text-xl mb-0.5"></i>
-                    <span class="text-[9px] font-medium">รีวิว</span>
+                <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/4 text-brand-subtext" onclick="switchTab('page-review', 3)" id="nav-item-3">
+                    <i class="fa-solid fa-heart text-xl"></i>
+                    <span class="text-[9px] font-medium">REVIEW</span>
                 </div>
             </div>
         </div>
@@ -247,18 +293,20 @@
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
-            window.scrollTo(0, 0);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Update Navigation State
+            // Update Navigation UI
             for (let i = 0; i <= 3; i++) {
                 const item = document.getElementById(`nav-item-${i}`);
                 if (item) {
                     if (i === navIndex) {
                         item.classList.replace('text-brand-subtext', 'text-brand-main');
-                        item.querySelector('span').classList.replace('font-medium', 'font-semibold');
+                        item.querySelector('span').classList.replace('font-medium', 'font-bold');
+                        item.querySelector('i').classList.add('scale-110');
                     } else {
                         item.classList.replace('text-brand-main', 'text-brand-subtext');
-                        item.querySelector('span').classList.replace('font-semibold', 'font-medium');
+                        item.querySelector('span').classList.replace('font-bold', 'font-medium');
+                        item.querySelector('i').classList.remove('scale-110');
                     }
                 }
             }
