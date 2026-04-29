@@ -50,6 +50,9 @@
         .page.active { display: block; }
         @keyframes pageIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .page::-webkit-scrollbar { width: 0px; }
+
+        .home-icon-btn { position: absolute; top: 1.5rem; right: 1.5rem; z-index: 50; width: 48px; height: 48px; background: rgba(255,255,255,0.2); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); border-radius: 16px; color: white; display: flex; items-center; justify-content: center; box-shadow: 0 8px 16px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.2s; }
+        .home-icon-btn:active { transform: scale(0.9); }
     </style>
 </head>
 <body class="text-brand-text font-sans antialiased">
@@ -70,10 +73,8 @@
                         <span class="text-white/80 text-[10px] font-bold tracking-[0.4em] uppercase mb-1">Junty We Official</span>
                         <h2 class="text-white font-outfit text-3xl font-black leading-none">JUNTY WE</h2>
                     </div>
-                    <div class="flex gap-3">
-                        <div class="w-12 h-12 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center text-white border border-white/30 shadow-lg">
-                            <i class="fa-regular fa-bell"></i>
-                        </div>
+                    <div class="w-12 h-12 bg-white/20 backdrop-blur-xl rounded-2xl flex items-center justify-center text-white border border-white/30 shadow-lg">
+                        <i class="fa-regular fa-bell text-lg"></i>
                     </div>
                 </div>
 
@@ -102,113 +103,98 @@
                 
                 <div class="grid grid-cols-4 gap-4 mb-12">
                     <div class="group flex flex-col items-center gap-3 cursor-pointer" onclick="switchTab('page-pricing', 1)">
-                        <div class="w-16 h-16 rounded-[26px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-premium border border-white group-active:scale-90 transition-all"><i class="fa-solid fa-receipt"></i></div>
+                        <div class="w-16 h-16 rounded-[24px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-premium border border-white group-active:scale-90 transition-all"><i class="fa-solid fa-receipt"></i></div>
                         <span class="text-[10px] font-black text-brand-text opacity-70">PRICING</span>
                     </div>
                     <div class="group flex flex-col items-center gap-3 cursor-pointer" onclick="switchTab('page-order', -1)">
-                        <div class="w-16 h-16 rounded-[26px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-premium border border-white group-active:scale-90 transition-all"><i class="fa-solid fa-basket-shopping"></i></div>
+                        <div class="w-16 h-16 rounded-[24px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-premium border border-white group-active:scale-90 transition-all"><i class="fa-solid fa-basket-shopping"></i></div>
                         <span class="text-[10px] font-black text-brand-text opacity-70">ORDER</span>
                     </div>
                     <div class="group flex flex-col items-center gap-3 cursor-pointer" onclick="switchTab('page-queue', 2)">
-                        <div class="w-16 h-16 rounded-[26px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-premium border border-white group-active:scale-90 transition-all"><i class="fa-solid fa-clipboard-list"></i></div>
+                        <div class="w-16 h-16 rounded-[24px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-premium border border-white group-active:scale-90 transition-all"><i class="fa-solid fa-clipboard-list"></i></div>
                         <span class="text-[10px] font-black text-brand-text opacity-70">QUEUE</span>
                     </div>
                     <div class="group flex flex-col items-center gap-3 cursor-pointer" onclick="switchTab('page-review', 3)">
-                        <div class="w-16 h-16 rounded-[26px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-premium border border-white group-active:scale-90 transition-all"><i class="fa-solid fa-star"></i></div>
+                        <div class="w-16 h-16 rounded-[24px] bg-brand-light flex items-center justify-center text-brand-dark text-2xl shadow-premium border border-white group-active:scale-90 transition-all"><i class="fa-solid fa-star"></i></div>
                         <span class="text-[10px] font-black text-brand-text opacity-70">REVIEW</span>
                     </div>
                 </div>
 
-                <div class="bg-brand-light/40 rounded-[45px] p-7 border border-brand-main/10 relative overflow-hidden">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-black text-brand-text text-sm flex items-center gap-2">
-                            <span class="w-1.5 h-6 bg-brand-main rounded-full animate-pulse"></span> Gallery Showcase
-                        </h3>
-                    </div>
-                    <div class="grid grid-cols-3 gap-3">
-                        <img src="juntywe-review1.png" onclick="showLightbox(this.src)" class="rounded-2xl w-full aspect-[3/4] object-cover bg-white shadow-premium cursor-pointer active:scale-95 transition-all">
-                        <img src="juntywe-review2.png" onclick="showLightbox(this.src)" class="rounded-2xl w-full aspect-[3/4] object-cover bg-white shadow-premium cursor-pointer active:scale-95 transition-all">
-                        <img src="juntywe-review3.png" onclick="showLightbox(this.src)" class="rounded-2xl w-full aspect-[3/4] object-cover bg-white shadow-premium cursor-pointer active:scale-95 transition-all">
-                    </div>
+                <div class="p-10 border-2 border-dashed border-brand-main/20 rounded-[45px] text-center">
+                    <p class="text-brand-subtext text-xs italic">Junty We Handmade Studio<br>ยินดีให้บริการค่ะ</p>
                 </div>
             </div>
         </div>
 
-        <div id="page-pricing" class="page">
-            <img src="3619_20241019174539.png" class="deco-item w-14 top-[5%] right-[5%] opacity-60">
-            <img src="3619_20241019174558.png" class="deco-item w-16 bottom-[15%] left-[2%] opacity-40">
+        <div id="page-pricing" class="page relative">
+            <div onclick="switchTab('page-home', 0)" class="home-icon-btn"><i class="fa-solid fa-house-chimney text-lg"></i></div>
+            <img src="3619_20241019174539.png" class="deco-item w-14 top-[5%] left-[5%] opacity-60">
 
-            <div class="px-8 pt-16 pb-10">
-                <div class="flex items-center justify-between mb-12">
-                    <button onclick="switchTab('page-home', 0)" class="w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-brand-dark active:scale-90 transition-all"><i class="fa-solid fa-chevron-left text-lg"></i></button>
-                    <h1 class="font-black text-brand-text text-xl tracking-[0.2em] uppercase">Pricing</h1>
-                    <div onclick="switchTab('page-home', 0)" class="w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-brand-dark cursor-pointer"><i class="fa-solid fa-house-chimney text-lg"></i></div>
+            <div class="px-8 pt-20 pb-10">
+                <div class="text-center mb-12">
+                    <h1 class="font-black text-brand-dark text-3xl font-outfit tracking-[0.2em] uppercase">Pricing</h1>
                 </div>
 
                 <div class="bg-white rounded-[50px] shadow-premium p-12 text-center relative border border-white">
-                    <div class="bg-brand-light inline-block px-10 py-3 rounded-[24px] mb-8 border border-brand-main/10">
+                    <div class="bg-brand-light inline-block px-10 py-3 rounded-[24px] mb-8 border border-brand-main/10 shadow-inner-soft">
                         <div class="text-brand-dark text-5xl font-black font-outfit leading-none">890.-</div>
                         <p class="text-[10px] font-black text-brand-subtext uppercase tracking-[0.3em] mt-2">Start Price</p>
                     </div>
                     <div class="space-y-6 text-left mb-12 px-2">
                         <div class="flex items-center gap-4 p-5 bg-brand-light rounded-[30px] border border-white">
-                            <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm"><i class="fa-solid fa-check-double text-brand-main"></i></div>
+                            <i class="fa-solid fa-check-double text-brand-main text-xl"></i>
                             <span class="text-[15px] font-bold text-brand-text">ราคา 890 - 1,500 บาท</span>
                         </div>
                         <p class="text-[14px] text-brand-subtext leading-relaxed font-medium opacity-90">
                             รายละเอียดการสั่งผลิตกระเป๋าจะแตกต่างกันออกไป ขึ้นอยู่กับความยากง่ายและดีเทลแพทเทิร์นต่างๆ
                         </p>
                     </div>
-                    <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="w-full bg-brand-dark text-white font-black py-5 rounded-[30px] shadow-glow-blue block active:scale-95 transition-all text-sm tracking-wide">
-                        สอบถามราคาเพิ่มเติม
-                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="w-full bg-brand-dark text-white font-black py-5 rounded-[30px] shadow-glow-blue block active:scale-95 transition-all text-sm tracking-wide">สอบถามราคาเพิ่มเติม</a>
                 </div>
             </div>
         </div>
 
-        <div id="page-order" class="page">
-            <div class="px-8 pt-16">
-                <div class="flex items-center justify-between mb-10">
-                    <div class="w-12"></div>
-                    <h1 class="text-2xl font-black text-brand-dark font-outfit uppercase tracking-tighter">Order Process</h1>
-                    <div onclick="switchTab('page-home', 0)" class="w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-brand-dark cursor-pointer"><i class="fa-solid fa-house-chimney text-lg"></i></div>
+        <div id="page-order" class="page relative">
+            <div onclick="switchTab('page-home', 0)" class="home-icon-btn"><i class="fa-solid fa-house-chimney text-lg"></i></div>
+            <div class="px-8 pt-20">
+                <div class="text-center mb-10">
+                    <h1 class="text-3xl font-black text-brand-dark font-outfit uppercase tracking-tighter">Order Process</h1>
                 </div>
-                
                 <div class="bg-white rounded-[50px] shadow-premium p-8 space-y-5 border border-white">
                     <div class="flex gap-5 p-5 bg-brand-light/60 rounded-[30px] items-center border border-white shadow-sm">
-                        <div class="w-10 h-10 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-lg flex-shrink-0">1</div>
+                        <div class="w-10 h-10 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-lg flex-shrink-0 text-sm">1</div>
                         <p class="text-[13.5px] text-brand-text font-bold">จองคิวสั่งผลิตกระเป๋า OC/ACG (Waiting List)</p>
                     </div>
                     <div class="flex gap-5 p-5 bg-brand-light/60 rounded-[30px] items-center border border-white shadow-sm">
-                        <div class="w-10 h-10 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-lg flex-shrink-0">2</div>
+                        <div class="w-10 h-10 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-lg flex-shrink-0 text-sm">2</div>
                         <p class="text-[13.5px] text-brand-text font-bold">ทางเราจะติดต่อกลับไปยัง DM เฟสบุ๊คคุณลูกค้า</p>
                     </div>
                     <div class="flex gap-5 p-5 bg-brand-light/60 rounded-[30px] items-center border border-white shadow-sm">
-                        <div class="w-10 h-10 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-lg flex-shrink-0">3</div>
+                        <div class="w-10 h-10 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-lg flex-shrink-0 text-sm">3</div>
                         <p class="text-[13.5px] text-brand-text font-bold">ส่งบรีฟให้แก่ทางร้าน | เช่น ส่งภาพตัวละคร</p>
                     </div>
                     <div class="flex gap-5 p-5 bg-brand-light/60 rounded-[30px] items-center border border-white shadow-sm">
-                        <div class="w-10 h-10 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-lg flex-shrink-0">4</div>
+                        <div class="w-10 h-10 rounded-full bg-brand-main text-white flex items-center justify-center font-black shadow-lg flex-shrink-0 text-sm">4</div>
                         <p class="text-[13.5px] text-brand-text font-bold">สรุปราคา และชำระเงินเต็มจำนวน</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id="page-queue" class="page">
-            <img src="3619_20241019174607.png" class="deco-item w-16 top-10 left-10 opacity-70">
+        <div id="page-queue" class="page relative">
+            <div onclick="switchTab('page-home', 0)" class="home-icon-btn"><i class="fa-solid fa-house-chimney text-lg"></i></div>
+            <img src="3619_20241019174607.png" class="deco-item w-16 top-10 left-[-10px] opacity-70">
 
-            <div class="px-8 pt-16">
-                <div class="text-center mb-12 relative">
-                    <h1 class="text-4xl font-black text-brand-dark font-outfit uppercase tracking-tighter">Track List</h1>
-                    <div class="h-1.5 w-20 bg-brand-main mx-auto rounded-full mt-4 shadow-sm"></div>
-                    <div onclick="switchTab('page-home', 0)" class="absolute -top-2 right-0 w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-brand-dark cursor-pointer"><i class="fa-solid fa-house-chimney text-lg"></i></div>
+            <div class="px-8 pt-20">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-black text-brand-dark font-outfit uppercase tracking-tighter">Track Queue</h1>
+                    <div class="h-1.5 w-16 bg-brand-main mx-auto rounded-full mt-2"></div>
                 </div>
 
                 <div class="bg-white rounded-[55px] shadow-premium p-10 border border-white relative overflow-hidden">
                     <div class="text-center mb-12">
-                        <p class="text-[17px] font-black text-brand-text mb-2">อัพเดทข้อมูลทุกครั้งสามารถติดตามได้ที่นี่</p>
-                        <p class="text-brand-subtext text-[11px] font-bold bg-brand-light inline-block px-5 py-1.5 rounded-full uppercase tracking-wider">Live Database</p>
+                        <p class="text-[16px] font-black text-brand-text mb-2 px-4">อัพเดทข้อมูลทุกครั้งสามารถติดตามได้ที่นี่</p>
+                        <span class="text-brand-subtext text-[10px] font-bold bg-brand-light px-4 py-1.5 rounded-full uppercase tracking-widest">Real-time tracking</span>
                     </div>
 
                     <a href="https://docs.google.com/spreadsheets/d/1C1DZwEdATiSjv1ufRAxLlK_AQo7BjiUtO_GTyETlJXs/edit?ouid=112020433733025582761&usp=sheets_home&ths=true" target="_blank" class="block w-full rounded-[45px] py-14 px-8 neon-glow-border bg-white group transition-all duration-500 hover:scale-[1.02]">
@@ -216,37 +202,43 @@
                             <i class="fa-solid fa-table-list text-4xl text-brand-main"></i>
                         </div>
                         <span class="block font-black text-brand-dark text-2xl mb-2 tracking-tight uppercase">Waiting List</span>
-                        <p class="text-[10px] font-bold text-brand-subtext tracking-[0.4em] opacity-60">OPEN GOOGLE SHEET</p>
+                        <p class="text-[10px] font-bold text-brand-subtext tracking-[0.2em] opacity-60">OPEN GOOGLE SHEET</p>
                     </a>
                 </div>
-                <p class="text-[12px] text-brand-subtext text-center mt-10 font-bold opacity-60">ระบบจะอัปเดตข้อมูลอัตโนมัติทุกวัน</p>
             </div>
         </div>
 
-        <div id="page-review" class="page flex flex-col justify-center">
+        <div id="page-review" class="page relative flex flex-col pt-20">
+            <div onclick="switchTab('page-home', 0)" class="home-icon-btn"><i class="fa-solid fa-house-chimney text-lg"></i></div>
             <img src="3619_20241019174539.png" class="deco-item w-14 top-24 right-6" style="animation-delay: -1.5s;">
-            <div onclick="switchTab('page-home', 0)" class="absolute top-16 right-8 w-12 h-12 rounded-2xl bg-white shadow-premium flex items-center justify-center text-brand-dark cursor-pointer z-50"><i class="fa-solid fa-house-chimney text-lg"></i></div>
 
-            <div class="px-8 w-full mt-[-40px]">
-                <div class="bg-white rounded-[65px] shadow-premium p-14 text-center relative border border-white overflow-hidden">
-                    <div class="absolute -top-10 -left-10 w-48 h-48 bg-brand-light rounded-full opacity-30"></div>
-                    <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-brand-light rounded-full opacity-30"></div>
+            <div class="px-8 w-full">
+                <div class="bg-white rounded-[45px] shadow-premium p-6 mb-8 border border-white">
+                    <p class="text-sm font-black text-brand-text mb-5 px-2 uppercase tracking-widest">Review Gallery</p>
+                    <div class="grid grid-cols-3 gap-3">
+                        <img src="juntywe-review1.png" onclick="showLightbox(this.src)" class="rounded-2xl w-full aspect-[3/4] object-cover bg-brand-light shadow-sm cursor-pointer active:scale-95 transition-all">
+                        <img src="juntywe-review2.png" onclick="showLightbox(this.src)" class="rounded-2xl w-full aspect-[3/4] object-cover bg-brand-light shadow-sm cursor-pointer active:scale-95 transition-all">
+                        <img src="juntywe-review3.png" onclick="showLightbox(this.src)" class="rounded-2xl w-full aspect-[3/4] object-cover bg-brand-light shadow-sm cursor-pointer active:scale-95 transition-all">
+                    </div>
+                </div>
 
+                <div class="bg-white rounded-[55px] shadow-premium p-12 text-center relative border border-white overflow-hidden">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-brand-light rounded-full opacity-30"></div>
                     <div class="relative z-10">
-                        <div class="w-40 h-40 bg-brand-light rounded-full flex items-center justify-center mx-auto mb-10 shadow-glow relative border-[10px] border-white overflow-hidden">
-                            <div class="absolute inset-0 border-[6px] border-dashed border-brand-main/20 rounded-full animate-[spin_15s_linear_infinite]"></div>
-                            <i class="fa-solid fa-heart text-7xl text-brand-main animate-bounce" style="animation-duration: 4s;"></i>
-                            <div class="absolute top-2 right-2 text-xl">✨</div>
+                        <div class="w-32 h-32 bg-brand-light rounded-full flex items-center justify-center mx-auto mb-8 shadow-glow relative border-[8px] border-white overflow-hidden">
+                            <div class="absolute inset-0 border-[4px] border-dashed border-brand-main/20 rounded-full animate-[spin_15s_linear_infinite]"></div>
+                            <i class="fa-solid fa-heart text-6xl text-brand-main animate-bounce" style="animation-duration: 4s;"></i>
+                            <div class="absolute top-2 right-2 text-lg">✨</div>
                         </div>
                         
-                        <h2 class="text-3xl font-black text-brand-text mb-4 uppercase tracking-tighter">Review ✨</h2>
-                        <p class="text-[16px] text-brand-subtext leading-relaxed mb-12 font-semibold px-2">
+                        <h2 class="text-3xl font-black text-brand-text mb-4 uppercase tracking-tighter leading-none">Review</h2>
+                        <p class="text-[15px] text-brand-subtext leading-relaxed mb-10 font-bold px-2">
                             สามารถอ่านรีวิว ความประทับใจ <br>และดูผลงานจริงเพิ่มเติมได้ที่นี่เลยค่ะ
                         </p>
                         
-                        <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="w-full flex items-center justify-center gap-4 bg-[#1877F2] text-white font-black py-6 rounded-[35px] shadow-2xl active:scale-95 transition-all text-[15px]">
-                            <i class="fa-brands fa-facebook text-3xl"></i>
-                            <span class="tracking-wide uppercase">Facebook Fanpage</span>
+                        <a href="https://www.facebook.com/profile.php?id=100068220894938" target="_blank" class="w-full flex items-center justify-center gap-4 bg-[#1877F2] text-white font-black py-5 rounded-[30px] shadow-2xl active:scale-95 transition-all text-sm">
+                            <i class="fa-brands fa-facebook text-2xl"></i>
+                            <span class="tracking-wide uppercase">Facebook Page</span>
                         </a>
                     </div>
                 </div>
@@ -264,7 +256,7 @@
                 </div>
                 <div class="relative w-1/4 flex justify-center">
                     <div onclick="switchTab('page-order', -1)" class="absolute -top-16 w-20 h-20 bg-brand-dark rounded-[32px] flex items-center justify-center text-white text-3xl shadow-glow-blue border-4 border-white rotate-45 active:scale-90 transition-all">
-                        <i class="fa-solid fa-plus -rotate-45"></i>
+                        <i class="fa-solid fa-plus -rotate-45 text-2xl"></i>
                     </div>
                 </div>
                 <div class="flex flex-col items-center gap-1.5 cursor-pointer w-1/4 text-brand-subtext transition-all" onclick="switchTab('page-queue', 2)" id="nav-item-2">
