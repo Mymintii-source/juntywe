@@ -19,6 +19,7 @@
                         'app': '0 -10px 40px -15px rgba(1, 87, 155, 0.3)',
                         'nav': '0 -10px 30px -5px rgba(0, 0, 0, 0.2)',
                         'card': '0 20px 45px -10px rgba(0, 0, 0, 0.15)',
+                        'glow': '0 0 20px rgba(255, 255, 255, 0.5)',
                         'logo': '0 0 0 8px white, 0 15px 40px rgba(0, 0, 0, 0.2)'
                     }
                 }
@@ -64,6 +65,7 @@
 </head>
 <body class="text-brand-text font-sans antialiased">
 
+    <!-- Popup Gallery -->
     <div id="gallery-popup" class="popup-overlay" onclick="closeGallery()">
         <div class="bg-white rounded-[40px] w-full max-w-sm max-h-[80vh] overflow-y-auto p-6 shadow-2xl relative" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center mb-6 sticky top-0 bg-white/95 backdrop-blur pb-2 z-10 border-b border-brand-light">
@@ -74,6 +76,7 @@
         </div>
     </div>
 
+    <!-- Image Modal -->
     <div id="image-modal" class="popup-overlay" onclick="closeModal()">
         <div class="relative max-w-[90%] max-h-[70vh]" onclick="event.stopPropagation()">
             <div class="close-modal-btn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></div>
@@ -83,6 +86,7 @@
 
     <div class="app-container flex flex-col">
         
+        <!-- PAGE: HOME -->
         <div id="page-home" class="page active relative overflow-hidden">
             <span class="decor-item text-4xl top-10 left-8">☁️</span>
             <span class="decor-item text-2xl top-32 right-12" style="animation-delay: 1s;">✨</span>
@@ -103,7 +107,7 @@
                          Welcome Customer <span class="text-xl">✨</span>
                     </h1>
                     <div class="welcome-border mt-3 inline-block shadow-lg">
-                        <div class="bg-white/30 backdrop-blur-md px-7 py-2.5 rounded-full flex items-center gap-3">
+                        <div class="bg-white/30 backdrop-blur-md px-7 py-2 rounded-full border border-white/30 flex items-center gap-3">
                             <i class="fa-solid fa-star text-white text-[10px]"></i>
                             <span class="text-[13px] font-black text-white tracking-widest uppercase">ยินดีต้อนรับลูกค้าทุกท่าน</span>
                             <i class="fa-solid fa-star text-white text-[10px]"></i>
@@ -136,7 +140,7 @@
                     <div class="bg-white rounded-[40px] p-6 relative z-10 border border-brand-light/50">
                         <div class="flex justify-between items-center mb-5">
                             <p class="text-sm font-black text-brand-text flex items-center gap-2"><span class="w-1.5 h-5 bg-brand-dark rounded-full"></span> ตัวอย่างงานล่าสุด</p>
-                            <span class="text-[9px] font-black text-white bg-brand-dark px-3 py-1.5 rounded-xl uppercase shadow-md">See All <i class="fa-solid fa-chevron-right text-[7px] ml-1"></i></span>
+                            <span class="text-[10px] font-black text-white bg-brand-dark px-4 py-1.5 rounded-xl uppercase shadow-md">See All <i class="fa-solid fa-chevron-right text-[8px] ml-1"></i></span>
                         </div>
                         <div class="grid grid-cols-3 gap-3" id="preview-grid">
                             <div class="skeleton aspect-[3/4] rounded-2xl"></div>
@@ -148,6 +152,7 @@
             </div>
         </div>
 
+        <!-- PAGE: PRICING -->
         <div id="page-pricing" class="page relative overflow-hidden">
             <span class="decor-item text-4xl top-10 right-10">☁️</span>
             <span class="decor-item text-3xl bottom-1/3 left-5" style="animation-delay: 2s;">🏷️</span>
@@ -156,7 +161,7 @@
             <div class="px-6 -mt-12 relative z-10">
                 <div class="bg-white rounded-[45px] shadow-card border-2 border-brand-light p-10 text-center relative overflow-hidden">
                     <div class="inline-flex bg-brand-dark text-white text-[15px] font-black px-10 py-3.5 rounded-full mb-8 shadow-glow uppercase tracking-widest">START 890.-</div>
-                    <h3 class="text-[32px] font-black text-brand-text leading-tight mb-4 tracking-tight">ราคาเริ่มต้น 890 - 1,500 บาท</h3>
+                    <h3 class="text-[32px] font-black text-brand-text leading-tight mb-4 tracking-tight">ราคาเริ่มต้น <br> <span class="text-brand-dark">890 - 1,500 บาท</span></h3>
                     <div class="my-10 h-[2.5px] bg-gradient-to-r from-transparent via-brand-main/50 to-transparent"></div>
                     <div class="space-y-6">
                         <p class="text-[17px] font-bold text-brand-subtext leading-relaxed px-2 text-center">รายละเอียดการสั่งผลิตกระเป๋าจะแตกต่างกันออกไป ขึ้นอยู่กับ รายละเอียด & ดีเทลแพทเทิร์นต่าง</p>
@@ -167,6 +172,7 @@
             </div>
         </div>
 
+        <!-- PAGE: ORDER (Fixed Content) -->
         <div id="page-order" class="page relative overflow-hidden">
             <span class="decor-item text-4xl top-10 left-10 opacity-30">☁️</span>
             <span class="decor-item text-3xl bottom-40 right-5 opacity-40" style="animation-delay: 2s;">💙</span>
@@ -175,7 +181,7 @@
             <div class="px-6 -mt-12 relative z-10 space-y-6 text-left">
                 <div class="bg-white/95 backdrop-blur-md rounded-[45px] shadow-app border border-white p-8 space-y-6 shadow-card">
                     <h2 class="text-brand-dark font-black text-xl mb-2 flex items-center gap-2 font-black"><i class="fa-solid fa-clipboard-list text-brand-main"></i> ขั้นตอนการสั่งผลิต</h2>
-                    <div class="flex items-start gap-4 p-4 bg-brand-light/60 rounded-2xl border border-brand-main/20 shadow-sm"><div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center font-black shrink-0 shadow-md">1</div><p class="text-[14px] text-brand-text font-bold">จองคิวสั่งผลิตกระเป๋า OC/ACG (Waiting List)</p></div>
+                    <div class="flex items-start gap-4 p-4 bg-brand-light/60 rounded-2xl border border-brand-main/20 shadow-sm"><div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center font-black shrink-0 shadow-md">1</div><p class="text-[14px] text-brand-text font-bold leading-tight">จองคิวสั่งผลิตกระเป๋า OC/ACG (Waiting List)</p></div>
                     <div class="flex items-start gap-4 p-4 bg-brand-light/60 rounded-2xl border border-brand-main/20 shadow-sm"><div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center font-black shrink-0 shadow-md">2</div><p class="text-[14px] text-brand-text font-bold leading-tight">ทางเราจะติดต่อกลับไปยัง DM เฟสบุ๊คคุณลูกค้า</p></div>
                     <div class="flex items-start gap-4 p-4 bg-brand-light/60 rounded-2xl border border-brand-main/20 shadow-sm"><div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center font-black shrink-0 shadow-md">3</div><p class="text-[14px] text-brand-text font-bold leading-tight">ส่งบรีฟให้แก่ทางร้าน | เช่น ส่งภาพตัวละคร</p></div>
                     <div class="flex items-start gap-4 p-4 bg-brand-light/60 rounded-2xl border border-brand-main/20 shadow-sm"><div class="w-10 h-10 rounded-xl bg-brand-dark text-white flex items-center justify-center font-black shrink-0 shadow-md">4</div><p class="text-[14px] text-brand-text font-bold leading-tight">สรุปราคา และชำระเงินเต็มจำนวน</p></div>
@@ -187,6 +193,7 @@
             </div>
         </div>
 
+        <!-- PAGE: QUEUE (ลิงก์ใหม่ตามสั่ง) -->
         <div id="page-queue" class="page relative text-center overflow-hidden">
             <span class="decor-item text-5xl top-10 left-8 opacity-40">✨</span>
             <span class="decor-item text-4xl bottom-20 right-10 opacity-30">☁️</span>
@@ -198,16 +205,18 @@
                     <h2 class="text-[26px] font-black text-brand-text uppercase tracking-tight text-center text-center">Check Status</h2>
                     <p class="text-[17px] font-black text-brand-dark mt-4 italic text-center text-center">สามารถเช็คคิวของคุณได้ที่นี่</p>
                     <div class="bg-brand-light/50 py-6 px-7 rounded-[30px] mt-8 shadow-inner border border-white/50"><p class="text-[13px] text-brand-subtext font-black uppercase tracking-tighter opacity-70 text-center text-center text-center">Realtime Tracking 24/7</p></div>
-                    <a href="https://docs.google.com/spreadsheets/d/1C1DZwEdATiSjv1ufRAxLlK_AQo7BjiUtO_GTyETlJXs/edit" target="_blank" class="mt-12 block bg-brand-dark text-white p-7 rounded-[32px] shadow-glow active:scale-95 transition-all font-black text-2xl border-b-4 border-black/20 uppercase tracking-tight flex items-center justify-center gap-3 text-center text-center text-center"><i class="fa-solid fa-list-ol text-xl text-center text-center text-center text-center"></i> Check Queue</a>
+                    <!-- แก้ไขลิงก์ตามสั่ง -->
+                    <a href="https://juntyhandmade.pages.dev/" target="_blank" class="mt-12 block bg-brand-dark text-white p-7 rounded-[32px] shadow-glow active:scale-95 transition-all font-black text-2xl border-b-4 border-black/20 uppercase tracking-tight flex items-center justify-center gap-3 text-center text-center text-center"><i class="fa-solid fa-list-ol text-xl"></i> Check Queue</a>
                 </div>
             </div>
         </div>
 
+        <!-- PAGE: REVIEW -->
         <div id="page-review" class="page relative text-center overflow-hidden">
             <span class="decor-item text-4xl top-10 right-10 opacity-30">🎀</span>
             <span class="decor-item text-3xl bottom-1/3 left-6 opacity-30" style="animation-delay: 2s;">🧵</span>
             <div class="home-btn-top" onclick="switchTab('page-home', 0)"><i class="fa-solid fa-house"></i></div>
-            <div class="gradient-bg pt-24 pb-24 text-center rounded-b-[60px] text-white"><h1 class="text-3xl font-black uppercase italic drop-shadow-xl text-center text-center">REVIEWS</h1></div>
+            <div class="gradient-bg pt-24 pb-24 text-center rounded-b-[60px] text-white"><h1 class="text-3xl font-black uppercase italic drop-shadow-xl text-center text-center text-center">REVIEWS</h1></div>
             <div class="px-6 -mt-12 relative z-10">
                 <div class="bg-white rounded-[45px] shadow-card border-2 border-brand-light p-10 text-center">
                     <div class="w-24 h-24 bg-brand-main rounded-full flex items-center justify-center mx-auto mb-10 shadow-xl border-4 border-white relative animate-pulse">
@@ -223,11 +232,12 @@
             </div>
         </div>
 
+        <!-- NAVIGATION -->
         <div class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-3xl border-t-2 border-brand-dark/20 px-8 py-7 z-50 shadow-nav max-w-[430px] mx-auto rounded-t-[45px]">
-            <div class="flex justify-between items-center text-center">
+            <div class="flex justify-between items-center text-center text-center text-center text-center text-center text-center">
                 <div onclick="switchTab('page-home', 0)" id="nav-item-0" class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-dark transition-colors duration-300"><i class="fa-solid fa-house-chimney text-2xl"></i><span class="text-[11px] font-black uppercase">Home</span></div>
                 <div onclick="switchTab('page-pricing', 1)" id="nav-item-1" class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-navInactive opacity-60 transition-colors duration-300"><i class="fa-solid fa-tag text-2xl"></i><span class="text-[11px] font-bold uppercase">Price</span></div>
-                <div onclick="switchTab('page-order', -1)" class="relative w-1/5 flex justify-center cursor-pointer group text-center"><div class="absolute -top-16 w-16 h-16 bg-white rounded-[24px] flex items-center justify-center text-brand-main text-2xl shadow-glow border-4 border-brand-dark rotate-45 transform active:scale-90 transition-all shadow-lg text-center"><i class="fa-solid fa-cart-shopping -rotate-45 text-center text-center"></i></div></div>
+                <div onclick="switchTab('page-order', -1)" class="relative w-1/5 flex justify-center cursor-pointer group text-center"><div class="absolute -top-16 w-16 h-16 bg-brand-dark rounded-[24px] flex items-center justify-center text-white text-2xl shadow-glow border-4 border-white rotate-45 transform active:scale-90 transition-all shadow-lg text-center"><i class="fa-solid fa-cart-shopping -rotate-45 text-center text-center"></i></div></div>
                 <div onclick="switchTab('page-queue', 2)" id="nav-item-2" class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-navInactive opacity-60 transition-colors duration-300"><i class="fa-solid fa-calendar-check text-2xl"></i><span class="text-[11px] font-bold uppercase">Queue</span></div>
                 <div onclick="switchTab('page-review', 3)" id="nav-item-3" class="flex flex-col items-center gap-1.5 cursor-pointer w-1/5 text-brand-navInactive opacity-60 transition-colors duration-300"><i class="fa-solid fa-heart text-2xl"></i><span class="text-[11px] font-bold uppercase">Review</span></div>
             </div>
